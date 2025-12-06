@@ -1,3 +1,4 @@
+{{-- // i18n rule: DO NOT translate class/id/data-* or any JS selector. --}}
 {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> --}}
 
@@ -19,20 +20,18 @@
                                     alt="Site Logo - ProMotors - Car Service & Detailing Template">
                             </a>
                         </div>
-                        <p>
-                            Duis aute irure dolor in reprehenderit in voluptate velite esse cillum dolore eu fugiat
-                        </p>
+                        <p>{{ __('common.footer_description') }}</p>
                         <div class="footer_hotline">
-                            <span>Support center 24/7</span>
+                            <span>{{ __('common.support_center') }}</span>
                             <a class="hotline_number" href="tel:+8801680636189">
-                                +880 1680 6361 89
+                                <bdi dir="ltr">{{ config('company.support_phone') }}</bdi>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="info_list_wrap">
-                        <h3 class="list_title">Quick Links</h3>
+                        <h3 class="list_title">{{ __('common.quick_links') }}</h3>
                         <ul class="info_list unordered_list_block text-uppercase">
                             <li>
                                 <a href="{{ route('home') }}">
@@ -40,7 +39,7 @@
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
                                     </span>
-                                    <span class="info_text">Home</span>
+                                    <span class="info_text">{{ __('nav.home') }}</span>
                                 </a>
                             </li>
                             <li>
@@ -49,7 +48,7 @@
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
                                     </span>
-                                    <span class="info_text">About Us</span>
+                                    <span class="info_text">{{ __('nav.about') }}</span>
                                 </a>
                             </li>
                             <li>
@@ -58,7 +57,7 @@
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
                                     </span>
-                                    <span class="info_text">Products</span>
+                                    <span class="info_text">{{ __('nav.products') }}</span>
                                 </a>
                             </li>
                             <li>
@@ -67,7 +66,7 @@
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
                                     </span>
-                                    <span class="info_text">Technology & Innovation</span>
+                                    <span class="info_text">{{ __('nav.technology') }}</span>
                                 </a>
                             </li>
                             <li>
@@ -76,7 +75,7 @@
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
                                     </span>
-                                    <span class="info_text">Where to fund us</span>
+                                    <span class="info_text">{{ __('nav.where_to_find_us') }}</span>
                                 </a>
                             </li>
                             <li>
@@ -85,7 +84,7 @@
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
                                     </span>
-                                    <span class="info_text">Markets</span>
+                                    <span class="info_text">{{ __('nav.markets') }}</span>
                                 </a>
                             </li>
                             <li>
@@ -94,7 +93,7 @@
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
                                     </span>
-                                    <span class="info_text">Your Insights</span>
+                                    <span class="info_text">{{ __('nav.insights') }}</span>
                                 </a>
                             </li>
                             <li>
@@ -103,7 +102,7 @@
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
                                     </span>
-                                    <span class="info_text">Contact Us</span>
+                                    <span class="info_text">{{ __('nav.contact') }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -111,22 +110,15 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="info_list_wrap">
-                        <h3 class="list_title">Products</h3>
+                        <h3 class="list_title">{{ __('nav.products') }}</h3>
                         @php
-                            $cats = [
-                                'Indoor Light' => 'indoor-light',
-                                'Outdoor Light' => 'outdoor-light',
-                                'Garden Light' => 'garden-light',
-                                'Solar Light' => 'solar-light',
-                                'Strip Light' => 'strip-light',
-                                'Bulb Light' => 'bulb-light',
-                            ];
+                            $cats = trans('products.categories');
                         @endphp
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <ul class="info_list unordered_list_block text-uppercase">
 
-                                    @foreach ($cats as $label => $slug)
+                                    @foreach ($cats as $slug => $label)
                                         <li>
                                             <a href="{{ route('products', ['category' => $slug]) }}">
                                                 <span class="info_icon">
@@ -144,7 +136,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="info_list_wrap">
-                        <h3 class="list_title">Company</h3>
+                        <h3 class="list_title">{{ __('common.company') }}</h3>
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <ul class="info_list unordered_list_block text-uppercase">
@@ -154,7 +146,7 @@
                                                 <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                                     alt="ProMotors - Icon Square">
                                             </span>
-                                            <span class="info_text">Catalogue</span>
+                                            <span class="info_text">{{ __('common.catalogue') }}</span>
                                         </a>
                                     </li>
                                     <li>
@@ -163,7 +155,7 @@
                                                 <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                                     alt="ProMotors - Icon Square">
                                             </span>
-                                            <span class="info_text">Technology and Innovation</span>
+                                            <span class="info_text">{{ __('nav.technology') }}</span>
                                         </a>
                                     </li>
                                     <li>
@@ -172,7 +164,7 @@
                                                 <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                                     alt="ProMotors - Icon Square">
                                             </span>
-                                            <span class="info_text">Where to Find Us</span>
+                                            <span class="info_text">{{ __('nav.where_to_find_us') }}</span>
                                         </a>
                                     </li>
                                     <li>
@@ -181,7 +173,7 @@
                                                 <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                                     alt="ProMotors - Icon Square">
                                             </span>
-                                            <span class="info_text">Clients</span>
+                                            <span class="info_text">{{ __('common.clients') }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -195,7 +187,7 @@
     <div class="copyright_widget">
         <div class="container">
             <p class="copyright_text text-center mb-0">
-                <a href="https://themeforest.net/user/merkulove">All rights reserved Copyrights 2025
+                <a href="https://themeforest.net/user/merkulove">{{ __('common.all_rights_reserved') }}</a>
             </p>
         </div>
     </div>

@@ -1,0 +1,27 @@
+<?php
+return [
+    'title' => 'Products',
+    'all_products' => 'All Products',
+    'browse_category' => 'Browse :category products',
+    'all_categories' => 'All product categories',
+    'see_more' => 'See More',
+    'recent_works_title' => 'Our Recent Works',
+    'categories_title' => 'Categories',
+    'product_details' => 'Product Details',
+    'description' => 'Description',
+    'additional_information' => 'Additional Information',
+    'product_description_title' => 'Product Description',
+    'categories_label' => 'Categories:',
+    'sku_label' => 'Sku:',
+    'tags_label' => 'Tags:',
+    'other_products' => 'Other Products',
+    'add_to_cart' => 'Add To Cart',
+    'categories' => [
+        'indoor-light' => 'Indoor Light',
+        'outdoor-light' => 'Outdoor Light',
+        'garden-light' => 'Garden Light',
+        'solar-light' => 'Solar Light',
+        'strip-light' => 'Strip Light',
+        'bulb-light' => 'Bulb Light',
+    ],
+];

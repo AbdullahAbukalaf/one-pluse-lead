@@ -1,20 +1,19 @@
-@extends('layouts.Site.master')
-@section('title', 'about us')
+@extends('layouts.site.master')
+@section('title', __('about.title'))
+
 @section('page-banner')
     @include('layouts.site.partials.banner', [
-        'title' => 'About Us',
+        'title' => __('about.title'),
         'image' => asset('UI/Site/images/shapes/tyre_print.svg'),
-        'description' => 'Learn more about our mission and values',
+        'description' => __('about.banner_description'),
         'breadcrumbs' => [
-            'Home' => route('home'),
-            'About Us' => "#"
-        ]
+            __('nav.home') => route('home'),
+            __('about.title') => '#',
+        ],
     ])
 @endsection
 @section('main-content')
 
-    <!-- About Section - Start
-                            ================================================== -->
     <section class="about_section section_space_lg pb-0">
         <div class="container">
             <div class="row align-items-center justify-content-lg-between">
@@ -27,15 +26,12 @@
                     <div class="about_content">
                         <div class="section_heading">
                             <h2 class="heading_text wow" data-splitting>
-                                We Make Auto Repair More Convenient
+                                {{ __('about.headline') }}
                             </h2>
-                            <p class="heading_description mb-0">
-                                Non nisi est sit amet facilisis magna etiam. Nibh praesent tristique magna sit amet purus
-                                gravida quis. A erat nam at lectus urna duis convallis convallis
-                            </p>
+                            <p class="heading_description mb-0">{{ __('about.description') }}</p>
                         </div>
                         <div class="progress_item">
-                            <h4 class="item_title">Highly Qualified Experts</h4>
+                            <h4 class="item_title">{{ __('about.progress.experts') }}</h4>
                             <div class="progress">
                                 <div class="progress_bar rx_width_90 wow animated" role="progressbar" data-wow-duration="1s"
                                     data-wow-delay=".4s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
@@ -44,7 +40,7 @@
                             </div>
                         </div>
                         <div class="progress_item mb-0">
-                            <h4 class="item_title">Clean, Modern Facility</h4>
+                            <h4 class="item_title">{{ __('about.progress.facility') }}</h4>
                             <div class="progress">
                                 <div class="progress_bar rx_width_98 wow animated" role="progressbar" data-wow-duration="1s"
                                     data-wow-delay=".4s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
@@ -57,17 +53,13 @@
             </div>
         </div>
     </section>
-    <!-- About Section - End
-                            ================================================== -->
 
-    <!-- Service Section - Start
-                            ================================================== -->
     <section id="products" class="service_section section_space_lg">
         <div class="container">
             <div class="section_heading">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <h2 class="heading_text mb-0 wow" data-splitting>About us</h2>
+                        <h2 class="heading_text mb-0 wow" data-splitting>{{ __('about.section_heading') }}</h2>
                     </div>
                 </div>
             </div>
@@ -76,6 +68,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="service_item">
                         <div class="item_icon">
+                            <!-- SVG unchanged -->
                             <svg width="50" height="53" viewBox="0 0 50 53" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -93,16 +86,13 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Vision</h3>
-                            <p>
-                                Eget velit aliquet sagittis id consectetur. Elit ut aliquam purus sit amet luctus. Odio eu
-                                feugiat pretium nibh ipsum consequat nisl vel
-                            </p>
+                            <h3 class="item_title">{{ __('about.vision.title') }}</h3>
+                            <p>{{ __('about.vision.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -112,6 +102,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="service_item">
                         <div class="item_icon">
+                            <!-- SVG unchanged -->
                             <svg width="25" height="52" viewBox="0 0 25 52" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -132,16 +123,13 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Mission</h3>
-                            <p>
-                                Etiam erat velit scelerisque in. Posuere morbi leo urna molestie at elementum eu. Placerat
-                                in egestas erat imperdiet sed euismod
-                            </p>
+                            <h3 class="item_title">{{ __('about.mission.title') }}</h3>
+                            <p>{{ __('about.mission.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -151,6 +139,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="service_item">
                         <div class="item_icon">
+                            <!-- SVG unchanged -->
                             <svg width="50" height="50" viewBox="0 0 50 50" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -162,16 +151,13 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Value</h3>
-                            <p>
-                                Fermentum posuere urna nec tincidunt praesent. Dignissim enim sit amet venenatis. Lorem
-                                ipsum dolor sit amet consectetur
-                            </p>
+                            <h3 class="item_title">{{ __('about.value.title') }}</h3>
+                            <p>{{ __('about.value.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -180,87 +166,73 @@
             </div>
         </div>
     </section>
-    <!-- Service Section - End
-                    ================================================== -->
 
-    <!-- Call To Action Section - Start
-                    ================================================== -->
     <section class="section_space_md">
         <div class="container">
             <div class="row align-items-end mb-4">
                 <div class="col">
-                    <h2 class="section_title">WHY CHOOSE US</h2>
+                    <h2 class="section_title">{{ __('about.why_choose_us') }}</h2>
                 </div>
                 <div class="col-auto">
-                    <a href="#" class="btn btn-primary btn-sm">ALL SERVICES</a>
+                    <a href="#" class="btn btn-primary btn-sm">{{ __('common.all_services') }}</a>
                 </div>
             </div>
 
             <div class="row g-4">
-                {{-- Card 1 --}}
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="service_item style_1">
                         <div class="service_image">
                             <img src="{{ Vite::asset('resources/UI/Site/images/services/service_img_1.jpg') }}"
-                                alt="Brake Repair" class="w-100">
+                                alt="{{ __('services.brake.title') }}" class="w-100">
                         </div>
                         <div class="service_content">
-                            <h3 class="service_title">BRAKE REPAIR</h3>
-                            <p class="mb-3">
-                                Eget velit aliquet sagittis id consectetur. Odio eu feugiat pretium nibh ipsum cons­­ectetur
-                                risus vel.
-                            </p>
+                            <h3 class="service_title">{{ __('services.brake.title') }}</h3>
+                            <p class="mb-3">{{ __('services.brake.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                {{-- Card 2 --}}
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="service_item style_1">
                         <div class="service_image">
                             <img src="{{ Vite::asset('resources/UI/Site/images/services/service_img_2.jpg') }}"
-                                alt="Engine Repair" class="w-100">
+                                alt="{{ __('services.engine.title') }}" class="w-100">
                         </div>
                         <div class="service_content">
-                            <h3 class="service_title">ENGINE REPAIR</h3>
-                            <p class="mb-3">
-                                Etiam erat velit scelerisque in. Placerat in egestas erat imperdiet sed euismod.
-                            </p>
+                            <h3 class="service_title">{{ __('services.engine.title') }}</h3>
+                            <p class="mb-3">{{ __('services.engine.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                {{-- Card 3 --}}
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="service_item style_1">
                         <div class="service_image">
                             <img src="{{ Vite::asset('resources/UI/Site/images/services/service_img_3.jpg') }}"
-                                alt="Tire Repair" class="w-100">
+                                alt="{{ __('services.tire.title') }}" class="w-100">
                         </div>
                         <div class="service_content">
-                            <h3 class="service_title">TIRE REPAIR</h3>
-                            <p class="mb-3">
-                                Fermentum posuere urna nec tincidunt praesent. Dignissim enim sit amet venenatis.
-                            </p>
+                            <h3 class="service_title">{{ __('services.tire.title') }}</h3>
+                            <p class="mb-3">{{ __('services.tire.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -269,15 +241,11 @@
             </div>
         </div>
     </section>
-    <!-- Call To Action Section - End
-                    ================================================== -->
 
-    <!-- Brand Logo Section - Start
-                    ================================================== -->
     <section class="brand_logo_section section_space_lg pb-0  text-center">
         <div class="container">
             <div class="section_heading">
-                <h2 class="heading_text mb-0 wow" data-splitting>Certifications</h2>
+                <h2 class="heading_text mb-0 wow" data-splitting>{{ __('about.certifications') }}</h2>
             </div>
         </div>
 
@@ -315,77 +283,29 @@
             </div>
         </div>
     </section>
-    <!-- Brand Logo Section - End
-                    ================================================== -->
 
-    <!-- Main Slider - Start
-            ================================================== -->
     <section class="main_slider_section main_slider_2">
         <div class="container position-relative">
             <div class="main_slider" data-slick='{"arrows": false}'>
-                <div class="slider_item section_space_lg">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="slider_image" data-animation="zoomIn" data-delay=".2s">
-                                <img src="{{ asset('UI/Site/images/hero/slider_image_6.png') }}"
-                                    alt="ProMotors - Tire Image">
+                @for ($i = 0; $i < 4; $i++)
+                    <div class="slider_item section_space_lg">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="slider_image" data-animation="zoomIn" data-delay=".2s">
+                                    <img src="{{ asset('UI/Site/images/hero/slider_image_6.png') }}"
+                                        alt="ProMotors - Tire Image">
+                                </div>
+                            </div>
+                            <div class="order-lg-first col-lg-6">
+                                <h3 class="title_text" data-animation="fadeInUp2" data-delay=".4s">
+                                    {{ __('about.slider_title') }}
+                                </h3>
                             </div>
                         </div>
-                        <div class="order-lg-first col-lg-6">
-                            <h3 class="title_text" data-animation="fadeInUp2" data-delay=".4s">
-                                Rims & Complete Wheels
-                            </h3>
-                        </div>
                     </div>
-                </div>
-                <div class="slider_item section_space_lg">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="slider_image" data-animation="zoomIn" data-delay=".2s">
-                                <img src="{{ asset('UI/Site/images/hero/slider_image_6.png') }}"
-                                    alt="ProMotors - Tire Image">
-                            </div>
-                        </div>
-                        <div class="order-lg-first col-lg-6">
-                            <h3 class="title_text" data-animation="fadeInUp2" data-delay=".4s">
-                                Rims & Complete Wheels
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider_item section_space_lg">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="slider_image" data-animation="zoomIn" data-delay=".2s">
-                                <img src="{{ asset('UI/Site/images/hero/slider_image_6.png') }}"
-                                    alt="ProMotors - Tire Image">
-                            </div>
-                        </div>
-                        <div class="order-lg-first col-lg-6">
-                            <h3 class="title_text" data-animation="fadeInUp2" data-delay=".4s">
-                                Rims & Complete Wheels
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider_item section_space_lg">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="slider_image" data-animation="zoomIn" data-delay=".2s">
-                                <img src="{{ asset('UI/Site/images/hero/slider_image_6.png') }}"
-                                    alt="ProMotors - Tire Image">
-                            </div>
-                        </div>
-                        <div class="order-lg-first col-lg-6">
-                            <h3 class="title_text" data-animation="fadeInUp2" data-delay=".4s">
-                                Rims & Complete Wheels
-                            </h3>
-                        </div>
-                    </div>
-                </div>
+                @endfor
             </div>
 
-            <!-- Main Slider Nav -->
             <div class="main_slider_nav d-none">
                 <div class="slider_nav_item"></div>
                 <div class="slider_nav_item"></div>
@@ -393,12 +313,10 @@
                 <div class="slider_nav_item"></div>
             </div>
 
-            <!-- Slider Progress -->
             <div class="slick-progress">
                 <span></span>
             </div>
 
-            <!-- Slider Counter -->
             <div class="slide_count_wrap">
                 <span class="current">1</span>
                 <span>/</span>
@@ -406,11 +324,7 @@
             </div>
         </div>
     </section>
-    <!-- Main Slider - End
-            ================================================== -->
 
-    <!-- Video Section - Start
-            ================================================== -->
     <section class="video_section">
         <div class="video_wrap parallaxie text-center section_space_lg"
             style="background-image: url({{ asset('UI/Site/images/video/video_poster_3.jpg') }});">
@@ -418,25 +332,20 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="section_heading">
-                            <h2 class="heading_text wow" data-splitting>Book your Service Today</h2>
+                            <h2 class="heading_text wow" data-splitting>{{ __('about.video.title') }}</h2>
                             <p class="heading_description mb-0 ps-lg-5 pe-lg-5">
-                                Egestas integer eget aliquet nibh praesent tristique magna. Penatibus et magnis dis
-                                parturient montes nascetur ridiculus
+                                {{ __('about.video.description') }}
                             </p>
                         </div>
                         <a class="btn btn-primary" href="contact.html">
-                            <span class="btn_text">Book Service Now</span>
+                            <span class="btn_text">{{ __('common.book_service_now') }}</span>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Video Section - End
-            ================================================== -->
 
-    <!-- Purchase Banner Section - Start
-        ================================================== -->
     <section class="purchase-banner">
         <div class="container">
             <div class="row">
@@ -445,14 +354,14 @@
                         <div class="row g-4 align-items-center">
                             <div class="col-md-6">
                                 <div class="banner-card">
-                                    <h3 class="mb-3">Looking to Purchase?</h3>
-                                    <a class="banner-btn" href="#where-to-buy">Where to buy</a>
+                                    <h3 class="mb-3">{{ __('common.purchase_heading') }}</h3>
+                                    <a class="banner-btn" href="#where-to-buy">{{ __('common.where_to_buy') }}</a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="banner-card">
-                                    <h3 class="mb-3">Need More Information?</h3>
-                                    <a class="banner-btn" href="#contact-us">Contact Us</a>
+                                    <h3 class="mb-3">{{ __('common.more_info_heading') }}</h3>
+                                    <a class="banner-btn" href="#contact-us">{{ __('common.contact_us') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -461,6 +370,4 @@
             </div>
         </div>
     </section>
-    <!-- Purchase Banner Section - End
-        ================================================== -->
 @endsection

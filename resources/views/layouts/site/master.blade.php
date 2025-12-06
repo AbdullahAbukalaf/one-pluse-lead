@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale()==='ar' ? 'rtl' : 'ltr' }}" data-bs-theme="dark">
 
 <head>
     @include('layouts.site.head')
 </head>
 
-<body>
+<body class="{{ app()->getLocale()==='ar' ? 'rtl' : 'ltr' }}">
     <!-- Body Wrap - Start -->
     <div class="page_wrapper">
 

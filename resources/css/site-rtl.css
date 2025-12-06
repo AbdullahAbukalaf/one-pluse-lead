@@ -1,0 +1,78 @@
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .slick-slider {
+  direction: rtl;
+}
+
+[dir="rtl"] .slick-track {
+  direction: rtl;
+}
+
+[dir="rtl"] .slick-dots {
+  text-align: center;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right !important;
+}
+
+[dir="rtl"] .ml-auto {
+  margin-right: auto;
+  margin-left: 0 !important;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-left: auto;
+  margin-right: 0 !important;
+}
+
+[dir="rtl"] .slider-container {
+  overflow: visible !important;
+}
+
+[dir="rtl"] .main_menu_list > li:not(:last-child) {
+  margin: 0 0 0 20px !important;
+}
+
+[dir="rtl"] .main_menu_list > li {
+  float: none;
+}
+
+[dir="rtl"] .breadcrumb_nav>li:not(:last-child) {
+  padding-left: 26px;
+  padding-right: 0;
+}
+
+[dir="rtl"] .breadcrumb_nav>li:not(:last-child):after {
+  left: 9px;
+  right: auto;
+}
+
+[dir="rtl"] .progress {
+  direction: rtl;
+}
+
+[dir="rtl"] .progress_bar {
+  float: right;
+}
+
+[dir="rtl"] .progress_bar span {
+  left: 0;
+  right: auto;
+}
+
+[dir="rtl"] .info_list .info_icon {
+  float: right;
+  margin: -1px 0 0 10px;
+}
+
+[dir="rtl"] .main_slider .info_list .info_icon {
+  margin: 5px 0 0 10px;
+}
+
+[dir="rtl"] .service_info_list_box .info_list .info_icon {
+  margin: 4px 0 0 10px;
+}

@@ -1,66 +1,64 @@
-@extends('layouts.Site.master')
-@section('title', 'Where To Find Us')
+@extends('layouts.site.master')
+@section('title', __('where.title'))
 
 @section('page-banner')
     @include('layouts.site.partials.banner', [
-        'title' => 'Where To Find Us',
+        'title' => __('where.title'),
         'image' => asset('UI/Site/images/shapes/tyre_print.svg'),
-        'description' => 'Where can I purchase your products?',
+        'description' => __('where.banner_description'),
         'breadcrumbs' => [
-            'Home' => route('home'),
-            'Where To Find Us' => '#',
+            __('nav.home') => route('home'),
+            __('where.title') => '#',
         ],
     ])
 @endsection
 
 @section('main-content')
+    @php $whereStrings = trans('where'); @endphp
     <section class="section_space_lg">
         <div class="container">
 
-            {{-- Tabs --}}
             <div class="tab_switch mb-4">
                 <ul class="unordered_list d-inline-flex gap-2">
                     <li>
-                        <button type="button" class="tab_btn active" data-target="#retailer-pane">Retailer</button>
+                        <button type="button" class="tab_btn active" data-target="#retailer-pane">{{ __('where.tabs.retailer') }}</button>
                     </li>
                     <li>
-                        <button type="button" class="tab_btn" data-target="#agent-pane">Agent</button>
+                        <button type="button" class="tab_btn" data-target="#agent-pane">{{ __('where.tabs.agent') }}</button>
                     </li>
                 </ul>
             </div>
 
             <div class="tab_panels">
-                {{-- ========== RETAILER (JORDAN) ========== --}}
                 <div id="retailer-pane" class="tab_panel active">
                     <div class="finder_box">
                         <div class="row g-3 align-items-end">
                             <div class="col-md-4 col-lg-4">
-                                <label class="finder_label">Country</label>
+                                <label class="finder_label">{{ __('where.country') }}</label>
                                 <input class="form-control finder_input" value="Jordan" disabled>
                             </div>
 
                             <div class="col-md-4 col-lg-4">
-                                <label class="finder_label">City <span class="text-danger">*</span></label>
+                                <label class="finder_label">{{ __('where.city') }} <span class="text-danger">*</span></label>
                                 <select id="ret-city" class="form-control finder_input"></select>
                             </div>
 
                             <div class="col-md-4 col-lg-4">
-                                <label class="finder_label">District</label>
+                                <label class="finder_label">{{ __('where.district') }}</label>
                                 <select id="ret-district" class="form-control finder_input" disabled></select>
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-end mt-3">
-                            <button id="ret-search" class="btn btn-primary finder_btn">SEARCH</button>
+                            <button id="ret-search" class="btn btn-primary finder_btn">{{ __('where.search') }}</button>
                         </div>
 
-                        {{-- static chips row per client mock (visual only) --}}
                         <ul class="unordered_list mt-3 d-flex flex-wrap gap-2">
-                            <li><span class="chip">Specification/C&I</span></li>
-                            <li><span class="chip">Non-Metered</span></li>
-                            <li><span class="chip">DOT</span></li>
-                            <li><span class="chip">Utility</span></li>
-                            <li><span class="chip">Sports Lighting</span></li>
+                            <li><span class="chip">{{ __('where.chips.spec') }}</span></li>
+                            <li><span class="chip">{{ __('where.chips.non_metered') }}</span></li>
+                            <li><span class="chip">{{ __('where.chips.dot') }}</span></li>
+                            <li><span class="chip">{{ __('where.chips.utility') }}</span></li>
+                            <li><span class="chip">{{ __('where.chips.sports') }}</span></li>
                         </ul>
                     </div>
 
@@ -72,20 +70,20 @@
 
                                 <div class="d-flex flex-wrap gap-2 mb-3">
                                     <a id="ret-dir" class="action_btn" target="_blank" rel="noopener">
-                                        <i class="fa-regular fa-location-dot"></i> <span>Directions</span>
+                                        <i class="fa-regular fa-location-dot"></i> <span>{{ __('where.directions') }}</span>
                                     </a>
                                     <a id="ret-phone" class="action_btn d-none">
-                                        <i class="fa-regular fa-phone"></i> <span>Call</span>
+                                        <i class="fa-regular fa-phone"></i> <span>{{ __('where.call') }}</span>
                                     </a>
                                     <a id="ret-web" class="action_btn d-none" target="_blank" rel="noopener">
-                                        <i class="fa-regular fa-globe"></i> <span>Website</span>
+                                        <i class="fa-regular fa-globe"></i> <span>{{ __('where.website') }}</span>
                                     </a>
                                 </div>
 
                                 <ul class="unordered_list d-flex flex-wrap gap-2">
-                                    <li><span class="tag">Specification/C&I</span></li>
-                                    <li><span class="tag">Non-Metered</span></li>
-                                    <li><span class="tag">Sports Lighting</span></li>
+                                    <li><span class="tag">{{ __('where.chips.spec') }}</span></li>
+                                    <li><span class="tag">{{ __('where.chips.non_metered') }}</span></li>
+                                    <li><span class="tag">{{ __('where.chips.sports') }}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -98,35 +96,34 @@
                     </div>
                 </div>
 
-                {{-- ========== AGENT (REGIONS) ========== --}}
                 <div id="agent-pane" class="tab_panel">
                     <div class="finder_box">
                         <div class="row g-3 align-items-end">
                             <div class="col-md-4 col-lg-4">
-                                <label class="finder_label">Country <span class="text-danger">*</span></label>
+                                <label class="finder_label">{{ __('where.country') }} <span class="text-danger">*</span></label>
                                 <select id="ag-country" class="form-control finder_input"></select>
                             </div>
 
                             <div class="col-md-4 col-lg-4">
-                                <label class="finder_label">City <span class="text-danger">*</span></label>
+                                <label class="finder_label">{{ __('where.city') }} <span class="text-danger">*</span></label>
                                 <select id="ag-city" class="form-control finder_input" disabled></select>
                             </div>
 
                             <div class="col-md-4 col-lg-4">
-                                <label class="finder_label">District (optional)</label>
+                                <label class="finder_label">{{ __('where.district_optional') }}</label>
                                 <select id="ag-district" class="form-control finder_input" disabled>
-                                    <option value="" selected>Not available for this city</option>
+                                    <option value="" selected>{{ __('where.not_available_city') }}</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-end mt-3">
-                            <button id="ag-search" class="btn btn-primary finder_btn">SEARCH</button>
+                            <button id="ag-search" class="btn btn-primary finder_btn">{{ __('where.search') }}</button>
                         </div>
 
                         <ul class="unordered_list mt-3 d-flex flex-wrap gap-2">
-                            <li><span class="chip">Distributor</span></li>
-                            <li><span class="chip">Official Agent</span></li>
+                            <li><span class="chip">{{ __('where.chips.distributor') }}</span></li>
+                            <li><span class="chip">{{ __('where.chips.official_agent') }}</span></li>
                         </ul>
                     </div>
 
@@ -138,19 +135,19 @@
 
                                 <div class="d-flex flex-wrap gap-2 mb-3">
                                     <a id="ag-dir" class="action_btn" target="_blank" rel="noopener">
-                                        <i class="fa-regular fa-location-dot"></i> <span>Directions</span>
+                                        <i class="fa-regular fa-location-dot"></i> <span>{{ __('where.directions') }}</span>
                                     </a>
                                     <a id="ag-phone" class="action_btn d-none">
-                                        <i class="fa-regular fa-phone"></i> <span>Call</span>
+                                        <i class="fa-regular fa-phone"></i> <span>{{ __('where.call') }}</span>
                                     </a>
                                     <a id="ag-web" class="action_btn d-none" target="_blank" rel="noopener">
-                                        <i class="fa-regular fa-globe"></i> <span>Website</span>
+                                        <i class="fa-regular fa-globe"></i> <span>{{ __('where.website') }}</span>
                                     </a>
                                 </div>
 
                                 <ul class="unordered_list d-flex flex-wrap gap-2">
-                                    <li><span class="tag">Distributor</span></li>
-                                    <li><span class="tag">Official Agent</span></li>
+                                    <li><span class="tag">{{ __('where.chips.distributor') }}</span></li>
+                                    <li><span class="tag">{{ __('where.chips.official_agent') }}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -168,7 +165,6 @@
         </div>
     </section>
 
-    {{-- Page-scoped styles (minimal, matching theme) --}}
     <style>
         .tab_btn {
             background: transparent;
@@ -271,9 +267,8 @@
         }
     </style>
 
-    {{-- Logic (tabs + API fetch + results). Uses countriesnow.space --}}
     <script>
-        // ---------- Tabs (no Bootstrap needed) ----------
+        const whereLang = @json($whereStrings);
         document.querySelectorAll('.tab_btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.tab_btn').forEach(b => b.classList.remove('active'));
@@ -284,7 +279,6 @@
             });
         });
 
-        // ---------- Helpers ----------
         const byId = id => document.getElementById(id);
         const API_COUNTRIES = 'https://countriesnow.space/api/v0.1/countries';
         const API_CITIES = 'https://countriesnow.space/api/v0.1/countries/cities';
@@ -292,7 +286,6 @@
         const gMapEmbed = (lat, lng) => `https://www.google.com/maps?q=${lat},${lng}&z=14&output=embed`;
         const gMapDir = (lat, lng) => `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 
-        // ---------- Jordan districts mapping (extend as needed) ----------
         const JORDAN_DISTRICTS = {
             "Amman": ["Abdoun", "Khalda", "Sweifieh", "Shmeisani", "Jabal Amman", "Jabal Al-Weibdeh", "Downtown",
                 "Dabouq", "Tla' Al Ali", "Mecca St."
@@ -310,10 +303,7 @@
             "Ajloun": ["Anjara", "City Center"]
         };
 
-
-        // ===== Agent districts map (extend freely) =====
         const AGENT_DISTRICTS = {
-            // UAE
             "United Arab Emirates::Abu Dhabi": ["Al Khalidiyah", "Mussafah", "Al Reem", "Al Maryah", "Yas Island",
                 "Al Bateen"
             ],
@@ -321,14 +311,11 @@
                 "Dubai Marina"
             ],
             "United Arab Emirates::Sharjah": ["Al Majaz", "Al Khan", "Al Nahda", "Industrial Area"],
-            // KSA
             "Saudi Arabia::Riyadh": ["Olaya", "Malaz", "Diplomatic Quarter", "Al Muruj", "Al Nakheel"],
             "Saudi Arabia::Jeddah": ["Al Hamra", "Al Salamah", "Al Andalus", "Al Shatie"],
-            // Qatar
             "Qatar::Doha": ["West Bay", "The Pearl", "Al Sadd", "Al Wakrah"]
         };
 
-        // ---------- MOCK results (replace later with real DB) ----------
         const MOCK_RETAILERS = {
             "Amman": {
                 "Abdoun": {
@@ -388,14 +375,13 @@
             }
         };
 
-        // ---------- Retailer: load Jordan cities then districts ----------
         const retCitySel = byId('ret-city');
         const retDistSel = byId('ret-district');
         const retSearch = byId('ret-search');
 
         async function loadJordanCities() {
             try {
-                retCitySel.innerHTML = `<option value="" disabled selected>Loading cities…</option>`;
+                retCitySel.innerHTML = `<option value="" disabled selected>${whereLang.loading_cities}</option>`;
                 const res = await fetch(API_CITIES, {
                     method: 'POST',
                     headers: {
@@ -407,14 +393,14 @@
                 });
                 const data = await res.json();
                 const cities = (data?.data || []).sort((a, b) => a.localeCompare(b));
-                retCitySel.innerHTML = `<option value="" disabled selected>Select city</option>`;
+                retCitySel.innerHTML = `<option value="" disabled selected>${whereLang.select_city}</option>`;
                 cities.forEach(c => {
                     retCitySel.insertAdjacentHTML('beforeend', `<option value="${c}">${c}</option>`);
                 });
-                retDistSel.innerHTML = `<option value="" disabled selected>Select district</option>`;
+                retDistSel.innerHTML = `<option value="" disabled selected>${whereLang.select_district}</option>`;
                 retDistSel.disabled = true;
             } catch (e) {
-                retCitySel.innerHTML = `<option value="" disabled selected>Failed to load</option>`;
+                retCitySel.innerHTML = `<option value="" disabled selected>${whereLang.failed_load}</option>`;
                 console.error('Jordan cities error', e);
             }
         }
@@ -424,8 +410,8 @@
             const districts = JORDAN_DISTRICTS[city] || [];
             retDistSel.disabled = districts.length === 0;
             retDistSel.innerHTML = districts.length ?
-                `<option value="" disabled selected>Select district</option>` :
-                `<option value="" selected>No districts for this city</option>`;
+                `<option value="" disabled selected>${whereLang.select_district}</option>` :
+                `<option value="" selected>${whereLang.not_available_city}</option>`;
             districts.forEach(d => retDistSel.insertAdjacentHTML('beforeend',
                 `<option value="${d}">${d}</option>`));
         });
@@ -434,15 +420,14 @@
             const city = retCitySel.value;
             const district = retDistSel.disabled ? null : retDistSel.value;
             if (!city) {
-                alert('Please choose a city');
+                alert(whereLang.choose_city);
                 return;
             }
 
-            // pick a mock result
             const hit = (MOCK_RETAILERS[city] && district && MOCK_RETAILERS[city][district]) ||
                 (MOCK_RETAILERS["Amman"] && MOCK_RETAILERS["Amman"]["Abdoun"]);
             if (!hit) {
-                alert('No results for that area (demo data).');
+                alert(whereLang.no_results);
                 return;
             }
 
@@ -465,7 +450,6 @@
             } else web.classList.add('d-none');
         });
 
-        // ---------- Agent: load countries then cities ----------
         const agCountry = byId('ag-country');
         const agCity = byId('ag-city');
         const agDist = byId('ag-district');
@@ -473,20 +457,20 @@
 
         async function loadCountries() {
             try {
-                agCountry.innerHTML = `<option value="" disabled selected>Loading countries…</option>`;
+                agCountry.innerHTML = `<option value="" disabled selected>${whereLang.loading_countries}</option>`;
                 const res = await fetch(API_COUNTRIES);
                 const json = await res.json();
                 const countries = (json?.data || [])
                     .map(c => c.country).filter(Boolean)
                     .sort((a, b) => a.localeCompare(b));
-                agCountry.innerHTML = `<option value="" disabled selected>Select country</option>`;
+                agCountry.innerHTML = `<option value="" disabled selected>${whereLang.select_country}</option>`;
                 countries.forEach(c => agCountry.insertAdjacentHTML('beforeend', `<option value="${c}">${c}</option>`));
-                agCity.innerHTML = `<option value="" disabled selected>Select city</option>`;
+                agCity.innerHTML = `<option value="" disabled selected>${whereLang.select_city}</option>`;
                 agCity.disabled = true;
-                agDist.innerHTML = `<option value="" selected>Not available for this city</option>`;
+                agDist.innerHTML = `<option value="" selected>${whereLang.not_available_city}</option>`;
                 agDist.disabled = true;
             } catch (e) {
-                agCountry.innerHTML = `<option value="" disabled selected>Failed to load</option>`;
+                agCountry.innerHTML = `<option value="" disabled selected>${whereLang.failed_load}</option>`;
                 console.error('Countries error', e);
             }
         }
@@ -494,8 +478,8 @@
         agCountry?.addEventListener('change', async e => {
             const country = e.target.value;
             agCity.disabled = true;
-            agCity.innerHTML = `<option value="" disabled selected>Loading cities…</option>`;
-            agDist.innerHTML = `<option value="" selected>Not available for this city</option>`;
+            agCity.innerHTML = `<option value="" disabled selected>${whereLang.loading_cities}</option>`;
+            agDist.innerHTML = `<option value="" selected>${whereLang.not_available_city}</option>`;
             agDist.disabled = true;
 
             try {
@@ -510,12 +494,12 @@
                 });
                 const data = await res.json();
                 const cities = (data?.data || []).sort((a, b) => a.localeCompare(b));
-                agCity.innerHTML = `<option value="" disabled selected>Select city</option>`;
+                agCity.innerHTML = `<option value="" disabled selected>${whereLang.select_city}</option>`;
                 cities.forEach(c => agCity.insertAdjacentHTML('beforeend',
                     `<option value="${c}">${c}</option>`));
                 agCity.disabled = false;
             } catch (err) {
-                agCity.innerHTML = `<option value="" disabled selected>Failed to load</option>`;
+                agCity.innerHTML = `<option value="" disabled selected>${whereLang.failed_load}</option>`;
                 console.error('Cities error', err);
             }
         });
@@ -528,12 +512,12 @@
 
             if (districts.length) {
                 agDist.disabled = false;
-                agDist.innerHTML = `<option value="" disabled selected>Select district</option>`;
+                agDist.innerHTML = `<option value="" disabled selected>${whereLang.select_district}</option>`;
                 districts.forEach(d => agDist.insertAdjacentHTML('beforeend',
                     `<option value="${d}">${d}</option>`));
             } else {
                 agDist.disabled = true;
-                agDist.innerHTML = `<option value="" selected>Not available for this city</option>`;
+                agDist.innerHTML = `<option value="" selected>${whereLang.not_available_city}</option>`;
             }
         });
 
@@ -542,14 +526,14 @@
             const city = agCity.value;
             const district = (!agDist.disabled && agDist.value) ? agDist.value : null;
             if (!country || !city) {
-                alert('Please choose country and city');
+                alert(whereLang.choose_country_city);
                 return;
             }
 
             const hit = (MOCK_AGENTS[country] && MOCK_AGENTS[country][city]) ||
                 MOCK_AGENTS["United Arab Emirates"]["Dubai"];
             if (!hit) {
-                alert('No results for that city (demo data).');
+                alert(whereLang.no_results);
                 return;
             }
 
@@ -574,13 +558,7 @@
             } else web.classList.add('d-none');
         });
 
-        // ---------- boot ----------
-        loadJordanCities();
-        loadCountries();
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // supports ?tab=agent, ?tab=retailer, #agent, #retailer
+        function bootTabsFromQuery() {
             const params = new URLSearchParams(location.search);
             const q = (params.get('tab') || location.hash.replace('#', '') || '').toLowerCase();
             const wanted = q === 'agent' ? '#agent-pane' :
@@ -589,11 +567,9 @@
 
             if (!wanted) return;
 
-            // deactivate current
             document.querySelectorAll('.tab_btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.tab_panel').forEach(p => p.classList.remove('active'));
 
-            // activate requested
             const btn = [...document.querySelectorAll('.tab_btn')]
                 .find(b => b.dataset.target === wanted);
             const panel = document.querySelector(wanted);
@@ -601,13 +577,15 @@
             if (btn && panel) {
                 btn.classList.add('active');
                 panel.classList.add('active');
-                // optional: scroll the tabs into view
                 panel.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             }
-        });
-    </script>
+        }
 
+        loadJordanCities();
+        loadCountries();
+        document.addEventListener('DOMContentLoaded', bootTabsFromQuery);
+    </script>
 @endsection

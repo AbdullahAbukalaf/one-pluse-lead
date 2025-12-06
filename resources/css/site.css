@@ -79,6 +79,17 @@
     color: #fff !important;
 }
 
+/* Responsive touch-ups */
+@media (max-width: 991.98px) {
+    .header_btns_group {
+        gap: 10px;
+    }
+
+    .main_menu_list > li:not(:last-child) {
+        margin: 0 0 10px 0 !important;
+    }
+}
+
 
 .s-card{background:#121212;border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;}
 .s-card_img{position:relative;display:block;overflow:hidden;}

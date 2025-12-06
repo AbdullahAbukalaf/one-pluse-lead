@@ -1,0 +1,27 @@
+<?php
+return [
+    'title' => 'المنتجات',
+    'all_products' => 'جميع المنتجات',
+    'browse_category' => 'تصفح منتجات :category',
+    'all_categories' => 'جميع فئات المنتجات',
+    'see_more' => 'عرض المزيد',
+    'recent_works_title' => 'أحدث أعمالنا',
+    'categories_title' => 'التصنيفات',
+    'product_details' => 'تفاصيل المنتج',
+    'description' => 'الوصف',
+    'additional_information' => 'معلومات إضافية',
+    'product_description_title' => 'وصف المنتج',
+    'categories_label' => 'التصنيفات:',
+    'sku_label' => 'رقم الصنف:',
+    'tags_label' => 'الوسوم:',
+    'other_products' => 'منتجات أخرى',
+    'add_to_cart' => 'أضف إلى السلة',
+    'categories' => [
+        'indoor-light' => 'إضاءة داخلية',
+        'outdoor-light' => 'إضاءة خارجية',
+        'garden-light' => 'إضاءة حدائق',
+        'solar-light' => 'إضاءة شمسية',
+        'strip-light' => 'شرائط إضاءة',
+        'bulb-light' => 'مصابيح',
+    ],
+];

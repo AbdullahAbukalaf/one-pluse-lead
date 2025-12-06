@@ -1,5 +1,6 @@
-@extends('layouts.Site.master')
-@section('title', 'Home')
+{{-- // i18n rule: DO NOT translate class/id/data-* or any JS selector. --}}
+@extends('layouts.site.master')
+@section('title', __('home.title'))
 @section('main-content')
     <!-- Hero Video Background - Start
     ================================================== -->
@@ -12,13 +13,10 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="hero_section_content py-5">
-                        <h1 class="hero_title wow" data-splitting>Auto Maintenance & Repair Service</h1>
-                        <p>
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                        </p>
+                        <h1 class="hero_title wow" data-splitting>{{ __('home.hero.title') }}</h1>
+                        <p>{{ __('home.hero.description') }}</p>
                         <a class="btn btn-primary" href="service_details.html">
-                            <span class="btn_text">Get Service</span>
+                            <span class="btn_text">{{ __('common.get_service') }}</span>
                         </a>
                     </div>
                 </div>
@@ -39,7 +37,7 @@
                             <span>K+</span>
                         </div>
                         <hr>
-                        <p class="counter_description mb-0">Happy Clients dolor purus non enim praesent elementum</p>
+                        <p class="counter_description mb-0">{{ __('home.counter_description') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -49,7 +47,7 @@
                             <span>+</span>
                         </div>
                         <hr>
-                        <p class="counter_description mb-0">Happy Clients dolor purus non enim praesent elementum</p>
+                        <p class="counter_description mb-0">{{ __('home.counter_description') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -59,7 +57,7 @@
                             <span>+</span>
                         </div>
                         <hr>
-                        <p class="counter_description mb-0">Happy Clients dolor purus non enim praesent elementum</p>
+                        <p class="counter_description mb-0">{{ __('home.counter_description') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -69,7 +67,7 @@
                             <span>%</span>
                         </div>
                         <hr>
-                        <p class="counter_description mb-0">Happy Clients dolor purus non enim praesent elementum</p>
+                        <p class="counter_description mb-0">{{ __('home.counter_description') }}</p>
                     </div>
                 </div>
             </div>
@@ -88,37 +86,37 @@
                 </div>
                 <div class="item_content">
                     <div class="section_heading">
-                        <div class="outline_text">About Us</div>
-                        <h3 class="heading_text wow" data-splitting>Car Exterior Cleaning: Basic Detailing</h3>
+                        <div class="outline_text">{{ __('home.about.outline') }}</div>
+                        <h3 class="heading_text wow" data-splitting>{{ __('home.about.title') }}</h3>
                         <ul class="info_list unordered_list_block text-uppercase">
                             <li>
                                 <span class="info_icon">
                                     <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}" alt="ProMotors - Icon Square">
                                 </span>
-                                <span class="info_text">Same Day Service</span>
+                                <span class="info_text">{{ __('home.about.features.0') }}</span>
                             </li>
                             <li>
                                 <span class="info_icon">
                                     <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}" alt="ProMotors - Icon Square">
                                 </span>
-                                <span class="info_text">Online Appointment</span>
+                                <span class="info_text">{{ __('home.about.features.1') }}</span>
                             </li>
                             <li>
                                 <span class="info_icon">
                                     <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}" alt="ProMotors - Icon Square">
                                 </span>
-                                <span class="info_text">Convenient Location</span>
+                                <span class="info_text">{{ __('home.about.features.2') }}</span>
                             </li>
                             <li>
                                 <span class="info_icon">
                                     <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}" alt="ProMotors - Icon Square">
                                 </span>
-                                <span class="info_text">Complimentary Shuttle</span>
+                                <span class="info_text">{{ __('home.about.features.3') }}</span>
                             </li>
                         </ul>
                     </div>
                     <a class="btn btn-primary" href="service_details.html">
-                        <span class="btn_text">Learn More</span>
+                        <span class="btn_text">{{ __('common.learn_more') }}</span>
                     </a>
                 </div>
             </div>
@@ -128,15 +126,12 @@
                 </div>
                 <div class="item_content">
                     <div class="section_heading">
-                        <div class="outline_text">About Us</div>
-                        <h3 class="heading_text wow" data-splitting>Rubbing, Waxing, and Polishing</h3>
-                        <p class="heading_description mb-0">
-                            Gravida quis blandit turpis cursus in hac habitasse platea. Velit sed ullamcorper morbi
-                            tincidunt ornare massa eget. Odio morbi quis commodo odio aenean. Ut etiam sit amet nisl purus
-                        </p>
+                        <div class="outline_text">{{ __('home.about.outline') }}</div>
+                        <h3 class="heading_text wow" data-splitting>{{ __('home.about.second_title') }}</h3>
+                        <p class="heading_description mb-0">{{ __('home.about.second_description') }}</p>
                     </div>
                     <a class="btn btn-primary" href="service_details.html">
-                        <span class="btn_text">Learn More</span>
+                        <span class="btn_text">{{ __('common.learn_more') }}</span>
                     </a>
                 </div>
             </div>
@@ -152,11 +147,11 @@
             <div class="section_heading">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <h2 class="heading_text mb-0 wow" data-splitting>Our Services</h2>
+                        <h2 class="heading_text mb-0 wow" data-splitting>{{ __('home.services_heading') }}</h2>
                     </div>
                     <div class="col-lg-6 d-none d-lg-flex justify-content-end">
                         <a class="btn btn-primary" href="service.html">
-                            <span class="btn_text">All Services</span>
+                            <span class="btn_text">{{ __('common.all_services') }}</span>
                         </a>
                     </div>
                 </div>
@@ -183,16 +178,13 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Brake Repair</h3>
-                            <p>
-                                Eget velit aliquet sagittis id consectetur. Elit ut aliquam purus sit amet luctus. Odio eu
-                                feugiat pretium nibh ipsum consequat nisl vel
-                            </p>
+                            <h3 class="item_title">{{ __('services.brake.title') }}</h3>
+                            <p>{{ __('services.brake.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -222,16 +214,13 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Engine Repair</h3>
-                            <p>
-                                Etiam erat velit scelerisque in. Posuere morbi leo urna molestie at elementum eu. Placerat
-                                in egestas erat imperdiet sed euismod
-                            </p>
+                            <h3 class="item_title">{{ __('services.engine.title') }}</h3>
+                            <p>{{ __('services.engine.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -252,16 +241,13 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Tire Repair</h3>
-                            <p>
-                                Fermentum posuere urna nec tincidunt praesent. Dignissim enim sit amet venenatis. Lorem
-                                ipsum dolor sit amet consectetur
-                            </p>
+                            <h3 class="item_title">{{ __('services.tire.title') }}</h3>
+                            <p>{{ __('services.tire.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -287,16 +273,13 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Cooling System</h3>
-                            <p>
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                pariatur
-                            </p>
+                            <h3 class="item_title">{{ __('services.cooling.title') }}</h3>
+                            <p>{{ __('services.cooling.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -322,16 +305,13 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Battery Repair</h3>
-                            <p>
-                                At auctor urna nunc id cursus metus. In vitae turpis massa sed. Duis aute irure dolor in
-                                reprehenderit in voluptate velit
-                            </p>
+                            <h3 class="item_title">{{ __('services.battery.title') }}</h3>
+                            <p>{{ __('services.battery.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -355,16 +335,13 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Steering Repair</h3>
-                            <p>
-                                Fusce id velit ut tortor pretium viverra suspendisse. Ullamcorper malesuada proin libero
-                                nunc consequat interdum
-                            </p>
+                            <h3 class="item_title">{{ __('services.steering.title') }}</h3>
+                            <p>{{ __('services.steering.description') }}</p>
                             <a class="btn-link" href="service_details.html">
                                 <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
                                 <span class="btn_text">
-                                    <small>Details Service</small>
-                                    <small>Details Service</small>
+                                    <small>{{ __('common.details_service') }}</small>
+                                    <small>{{ __('common.details_service') }}</small>
                                 </span>
                             </a>
                         </div>
@@ -374,7 +351,7 @@
 
             <div class="btn_wrap text-center d-lg-none d-block">
                 <a class="btn btn-primary" href="service.html">
-                    <span class="btn_text">All Services</span>
+                    <span class="btn_text">{{ __('common.all_services') }}</span>
                 </a>
             </div>
         </div>
@@ -390,7 +367,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section_heading pe-lg-5">
-                        <h2 class="heading_text wow" data-splitting>Why choose us</h2>
+                        <h2 class="heading_text wow" data-splitting>{{ __('home.work_process.heading') }}</h2>
                         {{-- <p class="heading_description mb-0">
                     Egestas integer eget aliquet nibh praesent tristique magna. Penatibus magnis dis parturient montes
                   </p> --}}
@@ -402,48 +379,36 @@
                             <div class="workprocess_item">
                                 <h3 class="item_title">
                                     <span class="serial_number">01</span>
-                                    <span class="title_text">make an appointment</span>
+                                    <span class="title_text">{{ __('home.work_process.steps.0.title') }}</span>
                                 </h3>
-                                <p class="mb-0">
-                                    Tempor id eu nisl nunc mi ipsum faucibus. Ac feugiat sed lectus vestibulum. Pellentesue
-                                    habitant morbi tristique senectus
-                                </p>
+                                <p class="mb-0">{{ __('home.work_process.steps.0.description') }}</p>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="workprocess_item">
                                 <h3 class="item_title">
                                     <span class="serial_number">02</span>
-                                    <span class="title_text">Select service</span>
+                                    <span class="title_text">{{ __('home.work_process.steps.1.title') }}</span>
                                 </h3>
-                                <p class="mb-0">
-                                    Pretium quam vulputate dignissim suspendisse in est ante. Neque tempus quam pellentesque
-                                    nec nam aliquam
-                                </p>
+                                <p class="mb-0">{{ __('home.work_process.steps.1.description') }}</p>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="workprocess_item">
                                 <h3 class="item_title">
                                     <span class="serial_number">03</span>
-                                    <span class="title_text">Confirm request</span>
+                                    <span class="title_text">{{ __('home.work_process.steps.2.title') }}</span>
                                 </h3>
-                                <p class="mb-0">
-                                    Ullamcorper eget nulla facilisi etiam. Integer eget aliquet nibh praesent tristique
-                                    magna sit. Placerat vestibulum lectus mauris ultrices
-                                </p>
+                                <p class="mb-0">{{ __('home.work_process.steps.2.description') }}</p>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="workprocess_item">
                                 <h3 class="item_title">
                                     <span class="serial_number">04</span>
-                                    <span class="title_text">get your car</span>
+                                    <span class="title_text">{{ __('home.work_process.steps.3.title') }}</span>
                                 </h3>
-                                <p class="mb-0">
-                                    Faucibus ornare suspendisse sed nisi lacus sed viverra tellus in. Tortor pretium viverra
-                                    suspendisse potenti nullam
-                                </p>
+                                <p class="mb-0">{{ __('home.work_process.steps.3.description') }}</p>
                             </div>
                         </div>
                     </div>
@@ -464,14 +429,14 @@
                         <div class="row g-4 align-items-center">
                             <div class="col-md-6">
                                 <div class="banner-card">
-                                    <h3 class="mb-3">Looking to Purchase?</h3>
-                                    <a class="banner-btn" href="#where-to-buy">Where to buy</a>
+                                    <h3 class="mb-3">{{ __('common.purchase_heading') }}</h3>
+                                    <a class="banner-btn" href="#where-to-buy">{{ __('common.where_to_buy') }}</a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="banner-card">
-                                    <h3 class="mb-3">Need More Information?</h3>
-                                    <a class="banner-btn" href="#contact-us">Contact Us</a>
+                                    <h3 class="mb-3">{{ __('common.more_info_heading') }}</h3>
+                                    <a class="banner-btn" href="#contact-us">{{ __('common.contact_us') }}</a>
                                 </div>
                             </div>
                         </div>
