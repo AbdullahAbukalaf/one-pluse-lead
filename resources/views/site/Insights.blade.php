@@ -1,77 +1,48 @@
-@extends('layouts.Site.master')
-@section('title', 'Your Insights')
+@extends('layouts.site.master')
+@section('title', __('insights.title'))
 
 @section('main-content')
-    <!-- Hero Video Background - Start
-                ================================================== -->
     <section id="home" class="hero_section hero_video_bg" style="height: 80vh">
         <video autoplay muted loop>
             <source src="{{ asset('UI/Site/videos/Promotors-Car-Care-Center.mp4') }}" type="video/mp4">
             <source src="{{ asset('UI/Site/videos/Promotors-Car-Care-Center.mp4') }}" type="video/ogg">
         </video>
-        {{-- <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="hero_section_content py-5">
-                        <h1 class="hero_title wow" data-splitting>Auto Maintenance & Repair Service</h1>
-                        <p>
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                        </p>
-                        <a class="btn btn-primary" href="service_details.html">
-                            <span class="btn_text">Get Service</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </section>
-    <!-- Hero Video Background - End
-                        ================================================== -->
 
-
-    <!-- Hero Section - Start
-                    ================================================== -->
     <section class="hero_section hero_section_1">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hero_section_content">
-                        <h1 class="hero_title wow" data-splitting>Auto Maintenance & Repair Service</h1>
-                        <p>
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                        </p>
+                        <h1 class="hero_title wow" data-splitting>{{ __('insights.hero_title') }}</h1>
+                        <p>{{ __('insights.hero_description') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="hero_section_image">
                         <img data-parallax='{"scale" : 0.6, "smoothness": 8}'
-                            src="{{ asset('UI/Site/images/hero/hero_image_1.png') }}" alt="ProMotors – Car Service Image">
+                            src="{{ asset('UI/Site/images/hero/hero_image_1.png') }}" alt="ProMotors - Car Service Image">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="outline_text" data-parallax='{"x" : -200, "smoothness": 8}'>Your Voice Matters</div>
+        <div class="outline_text" data-parallax='{"x" : -200, "smoothness": 8}'>{{ __('insights.voice_matters') }}</div>
     </section>
-    <!-- Hero Section - End
-                    ================================================== -->
-    <!-- Insights Form Section - Start
-    ================================================== -->
+
     <section class="appointment_form_section section_space_lg">
         <div class="container">
 
             <div class="row">
                 <div class="col-lg-7">
                     <div class="section_heading">
-                        <div class="outline_text">Insights</div>
+                        <div class="outline_text">{{ __('insights.outline') }}</div>
 
                         <h3 class="heading_text wow" data-splitting>
-                            Share Your Insight & Recommendations
+                            {{ __('insights.form_heading') }}
                         </h3>
 
                         <p class="heading_description mb-0">
-                            Help us improve by sharing your experience, recommendations, and product feedback.
+                            {{ __('insights.form_description') }}
                         </p>
                     </div>
                 </div>
@@ -82,30 +53,27 @@
 
                 <div class="form_wrap row">
 
-                    <!-- Name -->
                     <div class="col-md-6">
                         <div class="form-group mb-0">
-                            <label for="input_name">Your Name</label>
+                            <label for="input_name">{{ __('common.your_name') }}</label>
                             <input type="text" name="name" class="form-control" id="input_name"
-                                placeholder="Enter Your Name">
+                                placeholder="{{ __('common.your_name') }}">
                         </div>
                     </div>
 
-                    <!-- Email -->
                     <div class="col-md-6">
                         <div class="form-group mb-0">
-                            <label for="input_email">Your Email</label>
+                            <label for="input_email">{{ __('common.your_email') }}</label>
                             <input type="email" name="email" class="form-control" id="input_email"
-                                placeholder="Enter Your Email">
+                                placeholder="{{ __('common.your_email') }}">
                         </div>
                     </div>
 
-                    <!-- Country -->
                     <div class="col-md-6">
                         <div class="form-group mb-0">
-                            <label for="input_country">Country</label>
+                            <label for="input_country">{{ __('insights.country') }}</label>
                             <select name="country" id="input_country" class="form-control form-select">
-                                <option value="" disabled selected>Select Country</option>
+                                <option value="" disabled selected>{{ __('insights.select_country') }}</option>
                                 <option class="text-black">Jordan</option>
                                 <option class="text-black">Saudi Arabia</option>
                                 <option class="text-black">UAE</option>
@@ -117,70 +85,66 @@
                         </div>
                     </div>
 
-                    <!-- Have you bought before? -->
                     <div class="col-md-6">
                         <div class="form-group mb-0">
-                            <label>Have you bought a One Plus LED product before?</label>
+                            <label>{{ __('insights.bought_before_question') }}</label>
 
                             <div class="d-flex align-items-center gap-3">
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="bought_before" id="yes"
                                         value="yes">
-                                    <label class="form-check-label" for="yes">Yes</label>
+                                    <label class="form-check-label" for="yes">{{ __('insights.yes') }}</label>
                                 </div>
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="bought_before" id="no"
                                         value="no">
-                                    <label class="form-check-label" for="no">No</label>
+                                    <label class="form-check-label" for="no">{{ __('insights.no') }}</label>
                                 </div>
 
                             </div>
                         </div>
                     </div>
 
-                    <!-- Insight Type -->
                     <div class="col-md-6">
                         <div class="form-group mb-0">
-                            <label for="input_insight_type">Insight Type</label>
+                            <label for="input_insight_type">{{ __('insights.insight_type') }}</label>
                             <select name="insight_type" id="input_insight_type" class="form-control form-select">
-                                <option value="" disabled selected>Select Insight Type</option>
-                                <option class="text-black">Quality Issue</option>
-                                <option class="text-black">Performance</option>
-                                <option class="text-black">Installation</option>
-                                <option class="text-black">Feature Request</option>
-                                <option class="text-black">General Feedback</option>
+                                <option value="" disabled selected>{{ __('insights.select_insight_type') }}</option>
+                                <option class="text-black">{{ __('insights.insight_types.quality') }}</option>
+                                <option class="text-black">{{ __('insights.insight_types.performance') }}</option>
+                                <option class="text-black">{{ __('insights.insight_types.installation') }}</option>
+                                <option class="text-black">{{ __('insights.insight_types.feature') }}</option>
+                                <option class="text-black">{{ __('insights.insight_types.general') }}</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- Product Type -->
                     <div class="col-md-6">
                         <div class="form-group mb-0">
-                            <label for="input_product_type">Product Type</label>
+                            <label for="input_product_type">{{ __('insights.product_type') }}</label>
+                            @php
+                                $productTypes = trans('products.categories');
+                            @endphp
                             <select name="product_type" id="input_product_type" class="form-control form-select">
-                                <option value="" disabled selected>Select Product Type</option>
-                                <option class="text-black">Indoor Light</option>
-                                <option class="text-black">Outdoor Light</option>
-                                <option class="text-black">Garden Light</option>
-                                <option class="text-black">Solar Light</option>
-                                <option class="text-black">Strip Light</option>
-                                <option class="text-black">Bulb Light</option>
+                                <option value="" disabled selected>{{ __('insights.select_product_type') }}</option>
+                                @foreach ($productTypes as $label)
+                                    <option class="text-black">{{ $label }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
 
-                    <!-- Insights & Recommendations -->
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="input_message">Insights & Recommendations</label>
+                            <label for="input_message">{{ __('insights.insights_label') }}</label>
                             <textarea name="message" class="form-control" id="input_message"
-                                placeholder="Tell us your insights and recommendations..."></textarea>
+                                placeholder="{{ __('insights.insights_placeholder') }}"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary">
-                            <span class="btn_text">Submit Insight</span>
+                            <span class="btn_text">{{ __('insights.submit') }}</span>
                         </button>
                     </div>
 
@@ -189,6 +153,4 @@
 
         </div>
     </section>
-    <!-- Insights Form Section - End
-    ================================================== -->
 @endsection

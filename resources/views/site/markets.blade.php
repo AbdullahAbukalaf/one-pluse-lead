@@ -1,108 +1,50 @@
-@extends('layouts.Site.master')
-@section('title', 'Markets')
+@extends('layouts.site.master')
+@section('title', __('markets.title'))
 
-{{-- Page Banner --}}
 @section('page-banner')
     @include('layouts.site.partials.banner', [
-        'title' => 'Markets',
+        'title' => __('markets.title'),
         'image' => asset('UI/Site/images/shapes/tyre_print.svg'),
-        'description' =>
-            'From highways to stadiums—engineered illumination that’s safe, efficient, and built to last.',
+        'description' => __('markets.banner_description'),
         'breadcrumbs' => [
-            'Home' => route('home'),
-            'Markets' => '#',
+            __('nav.home') => route('home'),
+            __('markets.title') => '#',
         ],
     ])
 @endsection
 
 @section('main-content')
 
-
-
-    {{-- =========================
-       INTRO SECTION
-       ========================= --}}
     <section class="section_space_lg market-intro">
         <div class="container">
             <div class="market-panel">
                 <div class="row g-4 align-items-center">
                     <div class="col-lg-12">
-                        <span class="market-eyebrow">Markets and Applications</span>
+                        <span class="market-eyebrow">{{ __('markets.eyebrow') }}</span>
                         <div class="d-flex align-items-center gap-3 mb-2">
-                            <h3 class="section_title mb-0">Where We Operate</h3>
+                            <h3 class="section_title mb-0">{{ __('markets.where_we_operate') }}</h3>
                             <span class="glow-dot"></span>
                         </div>
-                        <p class="market-copy mb-4">
-                            Explore our primary market segments and typical applications. This page is your entry point to
-                            products, specs, and case studies tailored to each sector.
-                        </p>
-                        {{-- <div class="badge-row">
-                            <span class="market-pill">Transportation</span>
-                            <span class="market-pill">Urban Spaces</span>
-                            <span class="market-pill">Sports and Venues</span>
-                            <span class="market-pill">Industrial Sites</span>
-                            <span class="market-pill">Public Safety</span>
-                        </div> --}}
+                        <p class="market-copy mb-4">{{ __('markets.intro') }}</p>
                     </div>
-                    {{-- <div class="col-lg-5">
-                        <div class="market-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                                        <path d="M6.457 11.457 3.25 8.25l1.06-1.06 2.147 2.146 5.233-5.233 1.06 1.06-6.293 6.294Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                </span>
-                                <div>
-                                    <p class="highlight-title mb-1">Specification-ready</p>
-                                    <p class="highlight-text mb-0">Datasheets, photometrics, and drawings organized per sector.</p>
-                                </div>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                                        <path d="M7.333 1.333h1.334v4H7.333v-4Zm0 9.334h1.334v4H7.333v-4ZM3.525 3.525l.942-.942 2.83 2.83-.942.942-2.83-2.83Zm5.678 5.678.942-.942 2.83 2.83-.942.942-2.83-2.83Zm-8.204.13h4v1.334h-4V9.333Zm10.667 0h4v1.334h-4V9.333ZM3.525 12.475l2.83-2.83.942.942-2.83 2.83-.942-.942ZM9.203 6.797l2.83-2.83.942.942-2.83 2.83-.942-.942Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                </span>
-                                <div>
-                                    <p class="highlight-title mb-1">Use-case clarity</p>
-                                    <p class="highlight-text mb-0">Application notes and case studies to mirror real deployments.</p>
-                                </div>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                                        <path d="M8 1.333a6.667 6.667 0 1 0 0 13.334A6.667 6.667 0 0 0 8 1.333Zm-.667 10V8h1.334v3.333H7.333Zm0-4.666V5h1.334v1.667H7.333Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                </span>
-                                <div>
-                                    <p class="highlight-title mb-1">Guided support</p>
-                                    <p class="highlight-text mb-0">Fast contact paths for design assistance and product pairing.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Service Section - Start
-            ================================================== -->
     <section id="products" class="service_section section_space_lg">
         <div class="container">
             <div class="section_heading">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <h2 class="heading_text mb-0 wow" data-splitting>Our Services</h2>
+                        <h2 class="heading_text mb-0 wow" data-splitting>{{ __('home.services_heading') }}</h2>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
+                <div
+                    class="col-lg-4 col-md-6 col-sm-6">
                     <div
                         class="service_item bg-black d-flex justify-content-center align-items-center text-center bg-black d-flex justify-content-center align-items-center text-center">
                         <div class="item_icon">
@@ -123,7 +65,7 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Brake Repair</h3>
+                            <h3 class="item_title">{{ __('services.brake.title') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -151,7 +93,7 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Engine Repair</h3>
+                            <h3 class="item_title">{{ __('services.engine.title') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -170,7 +112,7 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Tire Repair</h3>
+                            <h3 class="item_title">{{ __('services.tire.title') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -194,7 +136,7 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Cooling System</h3>
+                            <h3 class="item_title">{{ __('services.cooling.title') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -218,7 +160,7 @@
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Battery Repair</h3>
+                            <h3 class="item_title">{{ __('services.battery.title') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -234,13 +176,10 @@
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M57.1381 2.83747L54.4292 3.79123V1.87944L57.1381 0.926519V2.83747ZM57.1381 5.31727L54.4292 6.27189V4.36435L57.1381 3.41058V5.31727ZM57.1381 7.80303L54.4292 8.7568V6.84841L57.1381 5.89123V7.80303ZM57.1381 10.2828L54.4292 11.2375V9.32906L57.1381 8.37614V10.2828ZM57.1381 12.7677L54.4292 13.7224V11.814L57.1381 10.8594V12.7677ZM57.1381 15.2492L54.4292 16.2064V14.2946L57.1381 13.3409V15.2492ZM57.1381 17.7333L54.4292 18.6871V16.7795L57.1381 15.8249V17.7333ZM57.1381 19.6689H54.4292V19.2636L57.1381 18.3056V19.6689ZM53.2659 19.6689H53.897V0.388321H53.2659V19.6689ZM52.1964 19.6689H52.8223V0.388321H52.1964V19.6689ZM48.951 19.6689V18.3056L51.6607 19.2636V19.6689H48.951ZM48.951 15.8249L51.6607 16.7795V18.6871L48.951 17.7333V15.8249ZM48.951 13.3409L51.6607 14.2946V16.2064L48.951 15.2492V13.3409ZM48.951 10.8594L51.6607 11.814V13.7224L48.951 12.7677V10.8594ZM48.951 8.37614L51.6607 9.32906V11.2375L48.951 10.2828V8.37614ZM48.951 5.89123L51.6607 6.84841V8.7568L48.951 7.80303V5.89123ZM48.951 3.41058L51.6607 4.36435V6.27189L48.951 5.31727V3.41058ZM48.951 0.926519L51.6607 1.87944V3.79123L48.951 2.83747V0.926519ZM48.951 0.353406L49.0549 0.388321H51.6607V1.30632L49.0549 0.388321H48.951V0.353406ZM54.4292 0.388321H57.0342L57.1262 0.356812V0.388321H57.0342L54.4292 1.30632V0.388321ZM57.3774 0.0212895C57.3263 0.00766422 57.2743 0 57.2232 0H57.1262V0.01618C57.0819 0.00766422 57.0342 0 56.9822 0H48.8982C48.5056 0 48.1846 0.321046 48.1846 0.717031V19.4203C48.1846 19.8171 48.5056 20.1339 48.8982 20.1339H57.2232C57.2743 20.1339 57.3263 20.1297 57.3774 20.1177C57.695 20.0453 57.936 19.7643 57.936 19.4203V0.717031C57.936 0.372992 57.695 0.0885643 57.3774 0.0212895Z"
                                     fill="#d16527" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M8.95266 2.83747L6.24379 3.79123V1.87944L8.95266 0.926519V2.83747ZM8.95266 5.31727L6.24379 6.27189V4.36435L8.95266 3.41058V5.31727ZM8.95266 7.80303L6.24379 8.7568V6.84841L8.95266 5.89123V7.80303ZM8.95266 10.2828L6.24379 11.2375V9.32906L8.95266 8.37614V10.2828ZM8.95266 12.7677L6.24379 13.7224V11.814L8.95266 10.8594V12.7677ZM8.95266 15.2492L6.24379 16.2064V14.2946L8.95266 13.3409V15.2492ZM8.95266 17.7333L6.24379 18.6871V16.7795L8.95266 15.8249V17.7333ZM8.95266 19.6689H6.24379V19.2636L8.95266 18.3056V19.6689ZM5.08053 19.6689H5.7107V0.388321H5.08053V19.6689ZM4.01094 19.6689H4.636V0.388321H4.01094V19.6689ZM0.764719 19.6689V18.3056L3.47445 19.2636V19.6689H0.764719ZM0.764719 15.8249L3.47445 16.7795V18.6871L0.764719 17.7333V15.8249ZM0.764719 13.3409L3.47445 14.2946V16.2064L0.764719 15.2492V13.3409ZM0.764719 10.8594L3.47445 11.814V13.7224L0.764719 12.7677V10.8594ZM0.764719 8.37614L3.47445 9.32906V11.2375L0.764719 10.2828V8.37614ZM0.764719 5.89123L3.47445 6.84841V8.7568L0.764719 7.80303V5.89123ZM0.764719 3.41058L3.47445 4.36435V6.27189L0.764719 5.31727V3.41058ZM0.764719 0.926519L3.47445 1.87944V3.79123L0.764719 2.83747V0.926519ZM0.764719 0.353406L0.869463 0.388321H3.47445V1.30632L0.869463 0.388321H0.764719V0.353406ZM6.24379 0.388321H8.84792L8.93989 0.356812V0.388321H8.84792L6.24379 1.30632V0.388321ZM9.19196 0.0212895C9.14086 0.00766422 9.08806 0 9.03697 0H8.93989V0.01618C8.89646 0.00766422 8.84792 0 8.79682 0H0.712773C0.320194 0 0 0.321046 0 0.717031V19.4203C0 19.8171 0.320194 20.1339 0.712773 20.1339H9.03697C9.08806 20.1339 9.14086 20.1297 9.19196 20.1177C9.50874 20.0453 9.74974 19.7643 9.74974 19.4203V0.717031C9.74974 0.372992 9.50874 0.0885643 9.19196 0.0212895Z"
-                                    fill="#d16527" />
                             </svg>
                         </div>
                         <div class="item_content">
-                            <h3 class="item_title">Steering Repair</h3>
+                            <h3 class="item_title">{{ __('services.steering.title') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -248,18 +187,12 @@
 
             <div class="btn_wrap text-center d-lg-none d-block">
                 <a class="btn btn-primary" href="service.html">
-                    <span class="btn_text">All Services</span>
+                    <span class="btn_text">{{ __('common.all_services') }}</span>
                 </a>
             </div>
         </div>
     </section>
-    <!-- Service Section - End
-            ================================================== -->
 
-
-
-    <!-- Purchase Banner Section - Start
-            ================================================== -->
     <section class="purchase-banner">
         <div class="container">
             <div class="row">
@@ -268,14 +201,14 @@
                         <div class="row g-4 align-items-center">
                             <div class="col-md-6">
                                 <div class="banner-card">
-                                    <h3 class="mb-3">Looking to Purchase?</h3>
-                                    <a class="banner-btn" href="#where-to-buy">Where to buy</a>
+                                    <h3 class="mb-3">{{ __('common.purchase_heading') }}</h3>
+                                    <a class="banner-btn" href="#where-to-buy">{{ __('common.where_to_buy') }}</a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="banner-card">
-                                    <h3 class="mb-3">Need More Information?</h3>
-                                    <a class="banner-btn" href="#contact-us">Contact Us</a>
+                                    <h3 class="mb-3">{{ __('common.more_info_heading') }}</h3>
+                                    <a class="banner-btn" href="#contact-us">{{ __('common.contact_us') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -284,6 +217,4 @@
             </div>
         </div>
     </section>
-    <!-- Purchase Banner Section - End
-            ================================================== -->
 @endsection

@@ -1,3 +1,4 @@
+// i18n rule: DO NOT translate class/id/data-* or any JS selector.
 // ==================================================
 // * Project Name   :  ProMotors – Car Service & Detailing Template
 // * File           :  JS Base
@@ -9,6 +10,14 @@
 
 (function($) {
   "use strict";
+
+  const isRTL = document.documentElement.dir === 'rtl';
+  const slickInit = (selector, options) => {
+    const $elements = $(selector).not('.slick-initialized');
+    if ($elements.length) {
+      $elements.slick({ rtl: isRTL, ...options });
+    }
+  };
 
   // Vanilla Calendar - Start
   // --------------------------------------------------
@@ -169,7 +178,7 @@
 
   // main slider - start
   // --------------------------------------------------
-  $('.main_slider').slick({
+  slickInit('.main_slider', {
     dots: true,
     fade: true,
     speed: 1000,
@@ -182,7 +191,7 @@
     nextArrow: ".main_right_arrow",
     asNavFor: '.main_slider_nav'
   });
-  $('.main_slider_nav').slick({
+  slickInit('.main_slider_nav', {
     dots: false,
     arrows: false,
     infinite: true,
@@ -281,7 +290,7 @@
 
   // Carousels - Start
   // --------------------------------------------------
-  $('.carousel_1col').slick({
+  slickInit('.carousel_1col', {
     dots: true,
     speed: 1000,
     arrows: true,
@@ -294,7 +303,7 @@
     nextArrow: ".c1c_arrow_right"
   });
 
-  $('.carousel_2col').slick({
+  slickInit('.carousel_2col', {
     dots: true,
     speed: 1000,
     arrows: true,
@@ -317,7 +326,7 @@
     ]
   });
 
-  $('.carousel_3col').slick({
+  slickInit('.carousel_3col', {
     dots: true,
     speed: 1000,
     arrows: true,
@@ -347,7 +356,7 @@
     ]
   });
 
-  $('.carousel_4col').slick({
+  slickInit('.carousel_4col', {
     dots: true,
     speed: 1000,
     arrows: true,
@@ -384,7 +393,7 @@
     ]
   });
 
-  $('.carousel_5col').slick({
+  slickInit('.carousel_5col', {
     dots: true,
     speed: 1000,
     arrows: true,
@@ -426,7 +435,7 @@
     ]
   });
 
-  $('.carousel_6col').slick({
+  slickInit('.carousel_6col', {
     dots: true,
     speed: 1000,
     arrows: true,
@@ -478,7 +487,7 @@
 
   // Carousels - Start
   // --------------------------------------------------
-  $('.brand_logo_carousel').slick({
+  slickInit('.brand_logo_carousel', {
     dots: false,
     speed: 8000,
     arrows: false,
@@ -525,14 +534,14 @@
 
   // Details Image Carousel - Start
   // --------------------------------------------------
-  $('.details_image_carousel').slick({
+  slickInit('.details_image_carousel', {
     dots: false,
     arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     asNavFor: '.details_image_carousel_nav'
   });
-  $('.details_image_carousel_nav').slick({
+  slickInit('.details_image_carousel_nav', {
     dots: false,
     arrows: false,
     vertical: true,

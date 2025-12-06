@@ -15,8 +15,8 @@
         @if (!empty($description))
             <p class="page_description">{{ $description }}</p>
         @endif
-        <a class="btn btn-primary" href="service_details.html">
-            <span class="btn_text">Contact us</span>
+        <a class="btn btn-primary" href="{{ route('Contact') }}">
+            <span class="btn_text">{{ __('common.contact_us') }}</span>
         </a>
     </div>
 </section>
