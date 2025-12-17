@@ -5,6 +5,13 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+// Add these imports
+use Database\Seeders\Home\HeroSectionSeeder;
+use Database\Seeders\Home\HomeCounterSeeder;
+use Database\Seeders\Home\AboutBlockSeeder;
+use Database\Seeders\Home\ServiceSeeder;
+use Database\Seeders\Home\WorkProcessStepSeeder;
+use Database\Seeders\Home\PurchaseBannerSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +27,14 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+        ]);
+        $this->call([
+            HeroSectionSeeder::class,
+            HomeCounterSeeder::class,
+            AboutBlockSeeder::class,
+            ServiceSeeder::class,
+            WorkProcessStepSeeder::class,
+            PurchaseBannerSeeder::class,
         ]);
     }
 }

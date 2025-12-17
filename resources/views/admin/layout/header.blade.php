@@ -1,0 +1,117 @@
+@php
+    $user = Auth::user();
+@endphp
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon bi bi-list"></div>
+        <div class="search-toggle-icon bi bi-search" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <i class="dw dw-user"></i>
+                    </span>
+                    <span class="user-name">{{ $user->name }}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a class="dropdown-item" href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                            class="dw dw-logout"></i> Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="left-side-bar">
+    <div class="brand-logo">
+        <a href="#">
+            <img src="{{ Vite::asset('resources/UI/Site/images/site_logo/dark_theme_site_logo.svg') }}" alt=""
+                class="dark-logo" />
+            <img src="{{ Vite::asset('resources/UI/Site/images/site_logo/dark_theme_site_logo.svg') }}" width="150"
+                class="light-logo" />
+        </a>
+        <div class="close-sidebar" data-toggle="left-sidebar-close">
+            <i class="ion-close-round"></i>
+        </div>
+    </div>
+    <div class="menu-block customscroll">
+        <div class="sidebar-menu">
+            <ul id="accordion-menu" class="p-0">
+
+                {{-- Main --}}
+                <li>
+                    <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow text-decoration-none">
+                        <span class="mtext">Home</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle no-arrow text-decoration-none">
+                        <span class="mtext">Users</span>
+                    </a>
+                </li>
+
+                <li>
+                    <div class="dropdown-divider"></div>
+                </li>
+
+                {{-- Home Page --}}
+                <li>
+                    <a href="javascript:;" class="dropdown-toggle text-decoration-none">
+                        {{-- <span class="micon bi bi-house"></span> --}}
+                        <span class="mtext">Home Pages</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{ route('admin.heroes.index') }}" class="text-decoration-none">
+                                Hero
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.services.index') }}" class="text-decoration-none">
+                                Services
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.counters.index') }}" class="text-decoration-none">
+                                Counters
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.about-blocks.index') }}" class="text-decoration-none">
+                                About Blocks
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.work-steps.index') }}" class="text-decoration-none">
+                                Work Steps
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.purchase-banners.index') }}" class="text-decoration-none">
+                                Purchase Banners
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="mobile-menu-overlay"></div>
