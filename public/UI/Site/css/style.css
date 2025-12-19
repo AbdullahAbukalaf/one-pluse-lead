@@ -1411,6 +1411,9 @@ blockquote .quote_content {
   position: relative;
   background-color: var(--bs-primary);
 }
+.progress_item .progress_bar {
+  width: 0%;
+}
 
 .progress_item .progress_bar span {
   right: 0;

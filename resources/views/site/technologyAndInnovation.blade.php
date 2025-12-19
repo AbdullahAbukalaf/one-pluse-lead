@@ -3,7 +3,7 @@
 @section('page-banner')
     @include('layouts.site.partials.banner', [
         'title' => __('technology.title'),
-        'image' => asset('UI/Site/images/hero/about_banner.png'),
+        'image' => asset('UI/Site/images/shapes/tyre_print.svg'),
         'description' => __('technology.banner_description'),
         'breadcrumbs' => [
             __('nav.home') => route('home'),

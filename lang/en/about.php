@@ -27,5 +27,6 @@ return [
     'video' => [
         'title' => 'Book your Service Today',
         'description' => 'Egestas integer eget aliquet nibh praesent tristique magna. Penatibus et magnis dis parturient montes nascetur ridiculus',
+        'btn_text' => 'Book a Service',
     ],
 ];

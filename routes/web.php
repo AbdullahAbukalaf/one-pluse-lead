@@ -13,8 +13,18 @@ use App\Http\Controllers\Admin\Home\{
     AboutBlockController,
     WorkProcessStepController,
     PurchaseBannerController,
-    ServiceController
+    ServiceController,
 };
+use App\Http\Controllers\Admin\About\{
+    AboutSliderController,
+    AboutCardController,
+    AboutBannerController,
+    AboutSectionController,
+    WhyChooseUsController,
+    BookServiceController,
+    CertificationController
+};
+use App\Http\Controllers\Site\AboutController;
 
 // Static lang payload for frontend
 Route::get('/lang.js', function () {
@@ -45,6 +55,38 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
     Route::post('about-blocks/{about_block}/features', [AboutBlockController::class, 'storeFeature'])->name('about-blocks.features.store');
     Route::delete('about-features/{feature}', [AboutBlockController::class, 'destroyFeature'])->name('about-features.destroy');
 
+     /*
+    |--------------------------------------------------------------------------
+    | About Page CMS (Admin/About/*)
+    |--------------------------------------------------------------------------
+    */
+
+    // Single-row sections (edit/update only)
+    Route::get('about/banner', [AboutBannerController::class, 'edit'])->name('about.banner.edit');
+    Route::post('about/banner', [AboutBannerController::class, 'update'])->name('about.banner.update');
+
+    Route::get('about/section', [AboutSectionController::class, 'edit'])->name('about.section.edit');
+    Route::post('about/section', [AboutSectionController::class, 'update'])->name('about.section.update');
+
+    Route::get('about/book-service', [BookServiceController::class, 'edit'])->name('about.book.edit');
+    Route::post('about/book-service', [BookServiceController::class, 'update'])->name('about.book.update');
+
+    // Full CRUD (resources)
+    Route::resource('about/why-choose-us', WhyChooseUsController::class)
+        ->parameters(['why-choose-us' => 'why_choose_us'])
+        ->names('about.why-choose-us');
+
+    Route::resource('about/cards', AboutCardController::class)
+        ->parameters(['cards' => 'card'])
+        ->names('about.cards');
+
+    Route::resource('about/certifications', CertificationController::class)
+        ->parameters(['certifications' => 'certification'])
+        ->names('about.certifications');
+
+    Route::resource('about/sliders', AboutSliderController::class)
+        ->parameters(['sliders' => 'slider'])
+        ->names('about.sliders');
 
     // Usually singleton-ish (index/edit/update only)
     Route::resource('heroes', HeroController::class)->only(['index', 'edit', 'update']);
@@ -70,7 +112,7 @@ Route::group([
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::get('/about', fn() => view('site.about'))->name('about');
+   Route::get('/about', [AboutController::class, 'index'])->name('about');
 
     Route::get('/productDetails', fn() => view('site.productDetails'))->name('productDetails');
 

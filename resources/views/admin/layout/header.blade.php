@@ -108,7 +108,58 @@
                     </ul>
                 </li>
 
+                {{-- About Page --}}
+                <li>
+                    <a href="javascript:;" class="dropdown-toggle text-decoration-none">
+                        {{-- <span class="micon bi bi-house"></span> --}}
+                        <span class="mtext">About Pages</span>
+                    </a>
 
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{ route('admin.about.banner.edit') }}" class="text-decoration-none">
+                                About Banner
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.about.section.edit') }}" class="text-decoration-none">
+                                About Section
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.about.why-choose-us.index') }}" class="text-decoration-none">
+                                Why Choose Us
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.about.cards.index') }}" class="text-decoration-none">
+                                About Cards
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.about.certifications.index') }}" class="text-decoration-none">
+                                Certifications
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.about.sliders.index') }}" class="text-decoration-none">
+                                About Slider
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.about.book.edit') }}" class="text-decoration-none">
+                                Book Service
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
             </ul>
 
         </div>

@@ -1,172 +1,132 @@
 @extends('layouts.site.master')
-@section('title', __('about.title'))
-
+@section('title', 'About')
+@php
+    $titleField = app()->getLocale() === 'ar' ? 'heading_ar' : 'heading_en';
+    $btnField = app()->getLocale() === 'ar' ? 'button_text_ar' : 'button_text_en';
+@endphp
 @section('page-banner')
     @include('layouts.site.partials.banner', [
-        'title' => __('about.title'),
-        'image' => asset('UI/Site/images/shapes/tyre_print.svg'),
-        'description' => __('about.banner_description'),
+        'title' =>
+            app()->getLocale() === 'ar' ? $banner?->heading_ar ?? 'من نحن' : $banner?->heading_en ?? 'About Us',
+        'image' => $banner?->image
+            ? asset('storage/' . $banner->image)
+            : asset('UI/Site/images/shapes/tyre_print.svg'),
+        'description' => app()->getLocale() === 'ar' ? $banner?->description_ar : $banner?->description_en,
         'breadcrumbs' => [
-            __('nav.home') => route('home'),
+            __('home.title') => route('home'),
             __('about.title') => '#',
         ],
     ])
 @endsection
+
 @section('main-content')
 
+    {{-- ABOUT SECTION --}}
     <section class="about_section section_space_lg pb-0">
         <div class="container">
             <div class="row align-items-center justify-content-lg-between">
                 <div class="col-lg-6 order-lg-last">
                     <div class="image_widget">
-                        <img src="assets/images/about/about_image_3.jpg" alt="ProMotors - About Image">
+                        <img src="{{ $aboutSection?->image ? asset('storage/' . $aboutSection->image) : asset('UI/Site/images/about/about_image_3.jpg') }}"
+                            alt="About Image">
                     </div>
                 </div>
+
                 <div class="col-lg-5">
                     <div class="about_content">
                         <div class="section_heading">
                             <h2 class="heading_text wow" data-splitting>
-                                {{ __('about.headline') }}
+                                {{ app()->getLocale() === 'ar' ? $aboutSection?->title_ar : $aboutSection?->title_en }}
                             </h2>
-                            <p class="heading_description mb-0">{{ __('about.description') }}</p>
+                            <p class="heading_description mb-0">
+                                {{ app()->getLocale() === 'ar' ? $aboutSection?->description_ar : $aboutSection?->description_en }}
+                            </p>
                         </div>
+
+                        {{-- Progress 1 --}}
+                        {{-- Progress 1 --}}
+                        @php $p1 = (int)($aboutSection?->progress_bar_percent1 ?? 0); @endphp
                         <div class="progress_item">
-                            <h4 class="item_title">{{ __('about.progress.experts') }}</h4>
+                            <h4 class="item_title">
+                                {{ app()->getLocale() === 'ar' ? $aboutSection?->progress_bar_title1_ar : $aboutSection?->progress_bar_title1_en }}
+                            </h4>
                             <div class="progress">
-                                <div class="progress_bar rx_width_90 wow animated" role="progressbar" data-wow-duration="1s"
-                                    data-wow-delay=".4s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                    <span class="value_text m-0">90%</span>
+                                <div class="progress_bar js-progress-bar" data-target="{{ $p1 }}"
+                                    role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                    aria-valuenow="{{ $p1 }}">
+                                    <span class="value_text m-0">{{ $p1 }}%</span>
                                 </div>
                             </div>
+
                         </div>
+
+                        {{-- Progress 2 --}}
+                        {{-- Progress 2 --}}
+                        @php $p2 = (int)($aboutSection?->progress_bar_percent2 ?? 0); @endphp
                         <div class="progress_item mb-0">
-                            <h4 class="item_title">{{ __('about.progress.facility') }}</h4>
+                            <h4 class="item_title">
+                                {{ app()->getLocale() === 'ar' ? $aboutSection?->progress_bar_title2_ar : $aboutSection?->progress_bar_title2_en }}
+                            </h4>
                             <div class="progress">
-                                <div class="progress_bar rx_width_98 wow animated" role="progressbar" data-wow-duration="1s"
-                                    data-wow-delay=".4s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                    <span class="value_text m-0">98%</span>
+                                <div class="progress_bar js-progress-bar" data-target="{{ $p2 }}"
+                                    role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                    aria-valuenow="{{ $p2 }}">
+                                    <span class="value_text m-0">{{ $p2 }}%</span>
                                 </div>
                             </div>
                         </div>
+
+
+
                     </div>
+
+
+
                 </div>
             </div>
         </div>
     </section>
 
+    {{-- CARDS SECTION --}}
     <section id="products" class="service_section section_space_lg">
         <div class="container">
             <div class="section_heading">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <h2 class="heading_text mb-0 wow" data-splitting>{{ __('about.section_heading') }}</h2>
+                        <h2 class="heading_text mb-0 wow" data-splitting>
+                            {{ app()->getLocale() === 'ar' ? $aboutSection?->title_ar : $aboutSection?->title_en }}
+                        </h2>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="service_item">
-                        <div class="item_icon">
-                            <!-- SVG unchanged -->
-                            <svg width="50" height="53" viewBox="0 0 50 53" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M17.989 16.9198C18.4298 16.9198 18.8798 17.0943 19.2104 17.4458L24.5082 22.9241L26 21.3814L19.1257 14.2727C20.6345 11.1347 20.4649 7.26919 18.3882 4.20132C16.353 1.21233 13.0218 -0.260247 9.74147 0.0377745L14.1246 6.49696C14.7256 7.39191 14.5137 8.61029 13.6576 9.23263L8.92011 12.6774C8.05552 13.2989 6.87646 13.0894 6.27549 12.1944L1.88388 5.72649C0.503078 8.82942 0.706511 12.5714 2.73152 15.5603C5.13965 19.1024 9.37784 20.5136 13.1998 19.3829L20.5666 27L22.0661 25.4573L16.7684 19.979C16.0911 19.2768 16.0911 18.147 16.7684 17.4458C17.0998 17.0943 17.5482 16.9198 17.989 16.9198ZM48.2825 37.3754C45.8849 33.8112 41.6359 32.3339 37.7669 33.3778L30.5482 26L29.024 27.5569L33.8719 32.5099C34.5635 33.2185 34.5635 34.3588 33.8719 35.0674C33.5257 35.4212 33.0756 35.5982 32.616 35.5982C32.1659 35.5982 31.7167 35.4212 31.3696 35.0674L26.5234 30.1047L25 31.6704L31.5946 38.4104C29.9769 41.5773 30.0799 45.5236 32.1927 48.6729C34.2354 51.716 37.6284 53.2278 40.9867 52.9722L36.5716 46.3994C35.9665 45.4962 36.1916 44.2763 37.0736 43.6474L41.9475 40.2247C42.8304 39.6055 44.0335 39.8355 44.6472 40.729L49.0528 47.3017C50.4983 44.1967 50.3261 40.4096 48.2825 37.3754Z"
-                                    fill="#EDEDED" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M23.4928 35.7352C23.1839 36.0883 22.681 36.0883 22.3721 35.7352L17.2323 29.8606C16.9226 29.5066 16.9226 28.9337 17.2323 28.5797L17.5078 28.2648C17.8159 27.9117 18.3188 27.9117 18.6285 28.2648L23.7683 34.1403C24.0772 34.4934 24.0772 35.0682 23.7683 35.4213L23.4928 35.7352Z"
-                                    fill="#EDEDED" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M21 36.5822L9.31104 49.9421L7.86996 51.5866C7.42042 52.0577 6.91066 52.4123 6.35085 52.6435C5.92675 52.831 5.49417 52.9368 5.05396 52.9732C4.90977 52.991 4.76558 52.9999 4.6129 52.9999C3.43391 53.0079 2.25407 52.5377 1.35499 51.5946C-0.451663 49.7021 -0.451663 46.6435 1.35499 44.7599L15.664 31L21 36.5822Z"
-                                    fill="#EDEDED" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M45 8.1179L42.7813 11.7545L40.8159 12.6281L23.1857 31L21 28.7233L38.6378 10.3514L39.4765 8.31292L42.9677 6L43.1532 6.19502L40.5787 8.43646C40.1288 8.90417 40.3322 9.91017 40.782 10.3867C41.2471 10.8632 42.2383 11.1447 42.6966 10.6691L44.806 7.91581L45 8.1179Z"
-                                    fill="#EDEDED" />
-                            </svg>
-                        </div>
-                        <div class="item_content">
-                            <h3 class="item_title">{{ __('about.vision.title') }}</h3>
-                            <p>{{ __('about.vision.description') }}</p>
-                            <a class="btn-link" href="service_details.html">
-                                <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                <span class="btn_text">
-                                    <small>{{ __('common.details_service') }}</small>
-                                    <small>{{ __('common.details_service') }}</small>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @forelse($cards as $card)
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="service_item">
+                            <div class="item_icon">
+                                @if ($card->svg)
+                                    <img src="{{ asset('storage/' . $card->svg) }}"
+                                        alt="{{ app()->getLocale() === 'ar' ? $card->title_ar : $card->title_en }}"
+                                        class="service_icon">
+                                @endif
 
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="service_item">
-                        <div class="item_icon">
-                            <!-- SVG unchanged -->
-                            <svg width="25" height="52" viewBox="0 0 25 52" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M14.521 20.2881L11.6342 36.9322H3.06641L7.94341 20.2881H14.521Z" fill="#EDEDED" />
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.43709H24.1346V0H0V6.43709Z"
-                                    fill="#EDEDED" />
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.6744H24.1346V8.19287H0V10.6744Z"
-                                    fill="#EDEDED" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12.1333 18.1352C11.0407 18.1352 10.144 17.2606 10.1202 16.168V16.1212C10.1202 15.0056 11.0254 14.1081 12.1333 14.1081C13.2489 14.1081 14.155 15.0056 14.155 16.1212C14.155 16.4729 14.0604 16.8084 13.9046 17.0963C13.5538 17.7205 12.898 18.1352 12.1333 18.1352ZM0 12.439V23.799H6.04707L6.98381 20.2956C6.98381 19.8596 7.28782 19.5079 7.68551 19.5079H16.4721C16.8621 19.5079 17.1747 19.8596 17.1747 20.2956L18.2272 23.799H24.1346V12.439H0Z"
-                                    fill="#EDEDED" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M6.75729 49.5814C3.85425 49.5814 1.49027 47.225 1.49027 44.3143C1.49027 41.4036 3.85425 39.0465 6.75729 39.0465C9.66799 39.0465 12.0243 41.4036 12.0243 44.3143C12.0243 47.225 9.66799 49.5814 6.75729 49.5814ZM0 51.2351H13.5222V37.7129H0V51.2351Z"
-                                    fill="#EDEDED" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M6.74684 47.6261C5.13991 47.6261 3.79015 46.4637 3.50062 44.9342H2.07422C2.37057 47.2437 4.3522 49.0312 6.74684 49.0312C9.14319 49.0312 11.1257 47.2437 11.422 44.9342H9.99306C9.70523 46.4637 8.35547 47.6261 6.74684 47.6261ZM6.74684 41.0016C8.35547 41.0016 9.70523 42.1564 9.99306 43.6867H11.422C11.1257 41.3763 9.14319 39.5889 6.74684 39.5889C4.3522 39.5889 2.37057 41.3763 2.07422 43.6867H3.50062C3.79015 42.1564 5.13991 41.0016 6.74684 41.0016Z"
-                                    fill="#EDEDED" />
-                            </svg>
-                        </div>
-                        <div class="item_content">
-                            <h3 class="item_title">{{ __('about.mission.title') }}</h3>
-                            <p>{{ __('about.mission.description') }}</p>
-                            <a class="btn-link" href="service_details.html">
-                                <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                <span class="btn_text">
-                                    <small>{{ __('common.details_service') }}</small>
-                                    <small>{{ __('common.details_service') }}</small>
-                                </span>
-                            </a>
+                            </div>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    {{ app()->getLocale() === 'ar' ? $card->title_ar : $card->title_en }}</h3>
+                                <p>{{ app()->getLocale() === 'ar' ? $card->description_ar : $card->description_en }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="service_item">
-                        <div class="item_icon">
-                            <!-- SVG unchanged -->
-                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M38.9933 39.3424L37.4178 40.756C36.992 41.0805 36.4896 41.4552 35.9446 41.8043C35.3144 42.2386 34.6672 42.6125 34.0371 42.9114C31.1843 44.4102 27.9227 45.2106 24.6186 45.2106H24.5675C21.1952 45.2021 17.9933 44.3931 15.0383 42.8092L13.1733 41.6936C12.6283 41.3351 12.2111 41.0294 11.8449 40.7228L11.8278 40.7143L11.6575 40.5951L10.2362 39.2922L10.1417 39.1976C6.1989 35.2642 4.03589 30.0695 4.06229 24.5598C4.06995 23.3591 4.18066 22.2265 4.39355 21.0939C4.51277 20.3181 4.66691 19.6198 4.86192 18.9649C4.98966 18.5221 5.15997 18.0529 5.31326 17.6109L5.40693 17.3554C5.70498 16.5379 6.00304 15.8907 6.34367 15.2946C9.3242 9.36762 15.0638 5.23746 21.6806 4.28284C22.3704 4.17298 23.0857 4.11337 23.784 4.10486C24.014 4.07846 24.2533 4.06994 24.5002 4.06994C24.5002 4.06994 24.7131 4.06228 24.7208 4.06228C25.0529 4.06228 25.3424 4.06994 25.6575 4.11337C26.194 4.12189 26.8582 4.1815 27.7354 4.30072C34.3266 5.30644 40.0415 9.47833 43.0383 15.4649C43.4215 16.2399 43.7025 16.8786 43.9069 17.4823C44.1368 17.9848 44.2994 18.5817 44.4434 19.1352C44.6733 19.8846 44.8351 20.6255 44.9211 21.2897C45.0991 22.3108 45.2013 23.4783 45.2098 24.7046C45.1842 30.2739 42.9786 35.4686 38.9933 39.3424ZM24.7293 0.00024092C11.1551 -0.0593697 0.050491 10.9507 0.000247817 24.5258C-0.0602144 38.117 10.9507 49.2301 24.5419 49.2803C38.1085 49.3323 49.2122 38.3299 49.2803 24.7386C49.3229 11.1559 38.3214 0.0513357 24.7293 0.00024092Z"
-                                    fill="#EDEDED" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M37.4353 37.3763L30.8441 26.5527L42.4937 21.8852C42.6555 22.8134 42.7151 23.768 42.7066 24.7048C42.6981 29.5077 40.8246 34.004 37.4353 37.3763ZM35.8599 38.8155C35.4426 39.122 35.0509 39.4371 34.574 39.7437C34.5655 39.7437 34.5569 39.7607 34.5484 39.7778L27.7358 30.3508C28.2382 30.0783 28.6981 29.7376 29.1068 29.3459L35.8854 38.7806C35.8769 38.7984 35.8769 38.7984 35.8599 38.8155ZM24.5764 42.7242C21.6811 42.7072 18.9134 42.0259 16.4183 40.723L24.5509 31.1342L32.709 40.7997C30.2054 42.0855 27.4471 42.7242 24.5764 42.7242ZM14.5874 39.65L14.5363 39.5989C14.102 39.3349 13.6847 39.0198 13.3441 38.7312L13.2674 38.6707L20.1141 29.2948C20.5144 29.6942 20.9742 30.0357 21.4682 30.2997L14.5874 39.65ZM11.7099 37.2486C8.37086 33.8346 6.53144 29.3459 6.54847 24.56C6.55699 23.6318 6.65066 22.7121 6.79543 21.7668L6.91465 21.8086L18.428 26.5357L11.7099 37.2486ZM7.2638 19.6549C7.39154 19.1695 7.56185 18.6841 7.74069 18.2072C7.7492 18.1979 7.75772 18.1561 7.77475 18.1391L18.8197 21.7839C18.5643 22.2778 18.3854 22.8134 18.2662 23.3678L7.23911 19.723C7.24677 19.706 7.25614 19.6796 7.2638 19.6549ZM21.7918 6.78754L20.8814 19.3398V19.3483H20.8721L8.65188 16.2316C11.3173 11.1902 16.1884 7.67318 21.7918 6.78754ZM20.31 24.1002C19.7905 24.1002 19.3648 23.6829 19.3648 23.1626C19.3648 22.6354 19.7905 22.2182 20.31 22.2182C20.8295 22.2182 21.2553 22.6354 21.2553 23.1626C21.2553 23.6829 20.8295 24.1002 20.31 24.1002ZM21.9459 27.3277C22.4645 27.3277 22.8903 27.7449 22.8903 28.2721C22.8903 28.7924 22.4645 29.2096 21.9459 29.2096C21.4256 29.2096 20.9998 28.7924 20.9998 28.2721C20.9998 27.7449 21.4256 27.3277 21.9459 27.3277ZM24.636 22.0215C26.0837 22.0215 27.2589 23.1975 27.2589 24.6452C27.2589 26.0843 26.0837 27.2595 24.636 27.2595C23.1969 27.2595 22.0217 26.0843 22.0217 24.6452C22.0217 23.1975 23.1969 22.0215 24.636 22.0215ZM24.636 19.0247C25.164 19.0247 25.5813 19.442 25.5813 19.9691C25.5813 20.4895 25.164 20.9067 24.636 20.9067C24.1166 20.9067 23.6908 20.4895 23.6908 19.9691C23.6908 19.442 24.1166 19.0247 24.636 19.0247ZM23.8449 6.59168C23.9122 6.57464 23.9803 6.56613 24.0399 6.56613C24.2188 6.55676 24.3891 6.55676 24.5764 6.55676H24.8319C25.0022 6.55676 25.1981 6.55676 25.5047 6.59168H25.5387L25.4961 18.2072C25.2151 18.1647 24.9256 18.1476 24.636 18.1476C24.3465 18.1476 24.0655 18.1647 23.7845 18.2072L23.8449 6.59168ZM28.2893 28.2721C28.2893 28.7924 27.872 29.2096 27.3441 29.2096C26.8255 29.2096 26.3997 28.7924 26.3997 28.2721C26.3997 27.7449 26.8255 27.3277 27.3441 27.3277C27.872 27.3277 28.2893 27.7449 28.2893 28.2721ZM29.9414 23.1626C29.9414 23.6829 29.5156 24.1002 28.9961 24.1002C28.4767 24.1002 28.0509 23.6829 28.0509 23.1626C28.0509 22.6354 28.4767 22.2182 28.9961 22.2182C29.5156 22.2182 29.9414 22.6354 29.9414 23.1626ZM40.7054 16.3423L28.4426 19.3739L27.6081 6.8216C33.2123 7.73279 38.0569 11.2924 40.7054 16.3423ZM41.591 18.3946C41.7869 18.8629 41.941 19.3824 42.0594 19.8244C42.0594 19.8423 42.0594 19.8423 42.0679 19.8593L31.0059 23.4027C30.9037 22.8483 30.7248 22.3204 30.4864 21.8264L41.5484 18.266C41.5655 18.3179 41.5655 18.3426 41.591 18.3946ZM44.0776 21.3913C43.9925 20.7109 43.8221 20.0126 43.6178 19.3483C43.4815 18.8119 43.3367 18.2754 43.1068 17.7636C42.8769 17.1087 42.5873 16.47 42.2808 15.8475C39.4706 10.2364 34.0545 6.12331 27.6251 5.14314C26.9353 5.05032 26.237 4.97367 25.5557 4.95664C25.2747 4.92173 25.0107 4.91406 24.7297 4.91406C24.4231 4.92173 24.1336 4.91406 23.8526 4.95664C23.1628 4.96516 22.4645 5.02477 21.8003 5.12696C15.3623 6.05433 9.9037 10.1172 7.08497 15.7206C6.72731 16.3423 6.4548 16.9724 6.20784 17.6367C6.02901 18.1476 5.83315 18.6841 5.67986 19.2121C5.484 19.8678 5.34008 20.5491 5.22852 21.2465C5.02415 22.3382 4.92196 23.4274 4.91429 24.56C4.88789 30.0433 7.14458 35.0081 10.7468 38.5941L10.8149 38.6622L12.237 39.9651L12.2966 39.9907C12.7139 40.3483 13.1738 40.6719 13.6166 40.9615L15.439 42.06C18.1555 43.5162 21.2467 44.3507 24.5679 44.3593C27.8465 44.3678 30.9462 43.5758 33.6713 42.1451C34.3015 41.8471 34.9155 41.4809 35.4852 41.0892C35.9621 40.7826 36.4134 40.4505 36.8485 40.1175L38.3976 38.7312C42.0423 35.1877 44.3331 30.2154 44.3586 24.7133C44.3501 23.5884 44.265 22.4736 44.0776 21.3913Z"
-                                    fill="#EDEDED" />
-                            </svg>
-                        </div>
-                        <div class="item_content">
-                            <h3 class="item_title">{{ __('about.value.title') }}</h3>
-                            <p>{{ __('about.value.description') }}</p>
-                            <a class="btn-link" href="service_details.html">
-                                <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                <span class="btn_text">
-                                    <small>{{ __('common.details_service') }}</small>
-                                    <small>{{ __('common.details_service') }}</small>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <div class="col-12 text-muted">No cards added yet.</div>
+                @endforelse
             </div>
         </div>
     </section>
 
+    {{-- WHY CHOOSE US --}}
     <section class="section_space_md">
         <div class="container">
             <div class="row align-items-end mb-4">
@@ -179,69 +139,35 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="service_item style_1">
-                        <div class="service_image">
-                            <img src="{{ Vite::asset('resources/UI/Site/images/services/service_img_1.jpg') }}"
-                                alt="{{ __('services.brake.title') }}" class="w-100">
-                        </div>
-                        <div class="service_content">
-                            <h3 class="service_title">{{ __('services.brake.title') }}</h3>
-                            <p class="mb-3">{{ __('services.brake.description') }}</p>
-                            <a class="btn-link" href="service_details.html">
-                                <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                <span class="btn_text">
-                                    <small>{{ __('common.details_service') }}</small>
-                                    <small>{{ __('common.details_service') }}</small>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="service_item style_1">
-                        <div class="service_image">
-                            <img src="{{ Vite::asset('resources/UI/Site/images/services/service_img_2.jpg') }}"
-                                alt="{{ __('services.engine.title') }}" class="w-100">
-                        </div>
-                        <div class="service_content">
-                            <h3 class="service_title">{{ __('services.engine.title') }}</h3>
-                            <p class="mb-3">{{ __('services.engine.description') }}</p>
-                            <a class="btn-link" href="service_details.html">
-                                <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                <span class="btn_text">
-                                    <small>{{ __('common.details_service') }}</small>
-                                    <small>{{ __('common.details_service') }}</small>
-                                </span>
-                            </a>
+                @foreach ($whyChooseUs as $item)
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="service_item style_1">
+                            <div class="service_image">
+                                <img src="{{ $item->image ? asset('storage/' . $item->image) : asset('UI/Site/images/services/service_image_1.jpg') }}"
+                                    alt="{{ $item->title_en }}" class="w-100">
+                            </div>
+                            <div class="service_content">
+                                <h3 class="service_title">
+                                    {{ app()->getLocale() === 'ar' ? $item->title_ar : $item->title_en }}</h3>
+                                <p class="mb-3">
+                                    {{ app()->getLocale() === 'ar' ? $item->description_ar : $item->description_en }}</p>
+                                <a class="btn-link" href="service_details.html">
+                                    <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
+                                    <span class="btn_text me-2">
+                                        <small>{{ __('common.details_service') }}</small>
+                                        <small>{{ __('common.details_service') }}</small>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="service_item style_1">
-                        <div class="service_image">
-                            <img src="{{ Vite::asset('resources/UI/Site/images/services/service_img_3.jpg') }}"
-                                alt="{{ __('services.tire.title') }}" class="w-100">
-                        </div>
-                        <div class="service_content">
-                            <h3 class="service_title">{{ __('services.tire.title') }}</h3>
-                            <p class="mb-3">{{ __('services.tire.description') }}</p>
-                            <a class="btn-link" href="service_details.html">
-                                <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                <span class="btn_text">
-                                    <small>{{ __('common.details_service') }}</small>
-                                    <small>{{ __('common.details_service') }}</small>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
 
+
+    {{-- CERTIFICATIONS --}}
     <section class="brand_logo_section section_space_lg pb-0  text-center">
         <div class="container">
             <div class="section_heading">
@@ -251,59 +177,51 @@
 
         <div class="brand_logo_carousel brand_logo_blur_effect row align-items-center"
             data-slick='{"dots":false, "arrows": false}'>
+            @foreach ($certifications as $cert)
             <div class="col-">
                 <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - TOYOTA Logo">
+                    <img src="{{ asset('storage/' . $cert->image) }}" alt="ProMotors - TOYOTA Logo">
                 </a>
             </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - Ford Logo">
-                </a>
-            </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - DODGE Logo">
-                </a>
-            </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - JAGUAR Logo">
-                </a>
-            </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - HONDA Logo">
-                </a>
-            </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - BMW Logo">
-                </a>
-            </div>
+            @endforeach
         </div>
     </section>
 
+    {{-- SLIDER --}}
     <section class="main_slider_section main_slider_2">
         <div class="container position-relative">
             <div class="main_slider" data-slick='{"arrows": false}'>
-                @for ($i = 0; $i < 4; $i++)
+                @forelse($sliders as $slide)
                     <div class="slider_item section_space_lg">
                         <div class="row align-items-center">
                             <div class="col-lg-6">
                                 <div class="slider_image" data-animation="zoomIn" data-delay=".2s">
-                                    <img src="{{ asset('UI/Site/images/hero/slider_image_6.png') }}"
-                                        alt="ProMotors - Tire Image">
+                                    <img src="{{ $slide->image ? asset('storage/' . $slide->image) : asset('UI/Site/images/hero/slider_image_6.png') }}"
+                                        alt="Slider Image">
                                 </div>
                             </div>
                             <div class="order-lg-first col-lg-6">
                                 <h3 class="title_text" data-animation="fadeInUp2" data-delay=".4s">
-                                    {{ __('about.slider_title') }}
+                                    {{ app()->getLocale() === 'ar' ? $slide->title_ar : $slide->title_en }}
                                 </h3>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @empty
+                    {{-- fallback (optional) --}}
+                    <div class="slider_item section_space_lg">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="slider_image">
+                                    <img src="{{ asset('UI/Site/images/hero/slider_image_6.png') }}" alt="Slider Image">
+                                </div>
+                            </div>
+                            <div class="order-lg-first col-lg-6">
+                                <h3 class="title_text">About</h3>
+                            </div>
+                        </div>
+                    </div>
+                @endforelse
             </div>
 
             <div class="main_slider_nav d-none">
@@ -313,61 +231,118 @@
                 <div class="slider_nav_item"></div>
             </div>
 
-            <div class="slick-progress">
-                <span></span>
-            </div>
+            <div class="slick-progress"><span></span></div>
 
             <div class="slide_count_wrap">
                 <span class="current">1</span>
                 <span>/</span>
-                <span class="total">4</span>
+                <span class="total">{{ max(1, $sliders->count()) }}</span>
             </div>
         </div>
     </section>
 
-    <section class="video_section">
-        <div class="video_wrap parallaxie text-center section_space_lg"
-            style="background-image: url({{ asset('UI/Site/images/video/video_poster_3.jpg') }});">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="section_heading">
-                            <h2 class="heading_text wow" data-splitting>{{ __('about.video.title') }}</h2>
-                            <p class="heading_description mb-0 ps-lg-5 pe-lg-5">
-                                {{ __('about.video.description') }}
-                            </p>
+    {{-- BOOK SERVICE (was the video section) --}}
+    @if($bookService && $bookService->is_active)
+        <section class="video_section">
+            <div class="video_wrap parallaxie text-center section_space_lg"
+                style="background-image: url({{ $bookService?->image ? asset('storage/' . $bookService->image) : asset('UI/Site/images/video/video_poster_3.jpg') }});">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="section_heading">
+                                <h2 class="heading_text wow" data-splitting>
+                                    {{ app()->getLocale() === 'ar' ? $bookService?->title_ar : $bookService?->title_en }}
+                                </h2>
+                                <p class="heading_description mb-0 ps-lg-5 pe-lg-5">
+                                    {{ app()->getLocale() === 'ar' ? $bookService?->description_ar : $bookService?->description_en }}
+                                </p>
+                            </div>
+
+                            <a class="btn btn-primary" href="#">
+                                <span class="btn_text">{{ __('about.video.btn_text') }}</span>
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="contact.html">
-                            <span class="btn_text">{{ __('common.book_service_now') }}</span>
-                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
+    {{-- Keep your purchase-banner section as-is --}}
     <section class="purchase-banner">
-        <div class="container">
-            <div class="row">
-                <div class="my-5">
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-md-6">
-                                <div class="banner-card">
-                                    <h3 class="mb-3">{{ __('common.purchase_heading') }}</h3>
-                                    <a class="banner-btn" href="#where-to-buy">{{ __('common.where_to_buy') }}</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="banner-card">
-                                    <h3 class="mb-3">{{ __('common.more_info_heading') }}</h3>
-                                    <a class="banner-btn" href="#contact-us">{{ __('common.contact_us') }}</a>
-                                </div>
+        <div class="container my-5">
+            <div class="row g-4 align-items-center">
+
+                @forelse ($banners as $banner)
+                    @if ($banner->is_active)
+                        <div class="col-md-6">
+                            <div class="banner-card">
+                                <h3 class="mb-3">
+                                    {{ $banner->{$titleField} }}
+                                </h3>
+
+                                @if ($banner->button_url)
+                                    <a class="banner-btn" href="{{ $banner->button_url }}">
+                                        {{ $banner->{$btnField} }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
+                    @endif
+                @empty
+                    <div class="col-12 text-center">
+                        <p class="text-muted">No banners available.</p>
                     </div>
-                </div>
+                @endforelse
+
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const bars = document.querySelectorAll(".js-progress-bar");
+            if (!bars.length) return;
+
+            const animateBar = (bar) => {
+                if (bar.dataset.running === "1") return;
+                bar.dataset.running = "1";
+
+                const target = Math.min(100, Math.max(0, parseInt(bar.dataset.target, 10) || 0));
+                let current = 0;
+                const duration = 1000; // ms
+                const startTime = performance.now();
+
+                function step(now) {
+                    const progress = Math.min((now - startTime) / duration, 1);
+                    current = Math.floor(progress * target);
+                    bar.style.width = current + "%";
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        bar.style.width = target + "%";
+                    }
+                }
+
+                requestAnimationFrame(step);
+            };
+
+            // Trigger when visible
+            const observer = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateBar(entry.target);
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.4
+                }
+            );
+
+            bars.forEach(bar => observer.observe(bar));
+        });
+    </script>
 @endsection

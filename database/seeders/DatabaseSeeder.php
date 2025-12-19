@@ -2,7 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\About\BookService;
 use App\Models\User;
+use Database\Seeders\About\AboutCardSeeder;
+use Database\Seeders\About\AboutSectionSeeder;
+use Database\Seeders\About\AboutSliderSeeder;
+use Database\Seeders\About\BookServiceSeeder;
+use Database\Seeders\About\CertificationSeeder;
+use Database\Seeders\About\WhyChooseUsSeeder;
+use Database\Seeders\About\AboutBannerSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 // Add these imports
@@ -35,6 +43,13 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             WorkProcessStepSeeder::class,
             PurchaseBannerSeeder::class,
+            AboutBannerSeeder::class,
+            AboutSectionSeeder::class,
+            AboutCardSeeder::class,
+            WhyChooseUsSeeder::class,
+            CertificationSeeder::class,
+            AboutSliderSeeder::class,
+            BookServiceSeeder::class,
         ]);
     }
 }
