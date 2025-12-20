@@ -71,7 +71,7 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="{{ route('admin.heroes.index') }}" class="text-decoration-none">
+                            <a href="#" class="text-decoration-none">
                                 Hero
                             </a>
                         </li>
@@ -220,8 +220,29 @@
                         </li>
                     </ul>
                 </li>
+                {{-- Insights Page --}}
+                <li>
+                    <a href="javascript:;" class="dropdown-toggle text-decoration-none">
+                        <span class="mtext">Insights Pages</span>
+                    </a>
 
-            </ul>
+                    <ul class="submenu">
+                        <li><a href="{{ route('admin.insights.hero.edit') }}" class="text-decoration-none">Hero
+                                Video</a></li>
+                        <li><a href="{{ route('admin.insights.section.edit') }}"
+                                class="text-decoration-none">Insights Section</a></li>
+                        <li><a href="{{ route('admin.insights.types.index') }}" class="text-decoration-none">Insight
+                                Types</a></li>
+                        <li><a href="{{ route('admin.insights.recommendations.index') }}"
+                                class="text-decoration-none">Recommendations</a></li>
+                    </ul>
+                </li>
+                {{-- Categories --}}
+                <li>
+                    <a href="{{ route('admin.categories.index') }}" class="dropdown-toggle no-arrow text-decoration-none">
+                        <span class="mtext">Categories</span>
+                    </a>
+                </li>
 
         </div>
     </div>

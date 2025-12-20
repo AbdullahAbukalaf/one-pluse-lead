@@ -26,4 +26,5 @@ return [
     'insights_label' => 'Insights & Recommendations',
     'insights_placeholder' => 'Tell us your insights and recommendations...',
     'submit' => 'Submit Insight',
+    'thank_you' => 'Thank you for your insights! We appreciate your time and effort in helping us improve.',
 ];
