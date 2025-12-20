@@ -24,7 +24,15 @@ use App\Http\Controllers\Admin\About\{
     BookServiceController,
     CertificationController
 };
+use App\Http\Controllers\Admin\Technology\{
+    TechnologyBannerController,
+    TechnologyTestimonialController,
+    TechnologyWhyChooseUsController,
+    TechnologyCertificationController
+};
+
 use App\Http\Controllers\Site\AboutController;
+use App\Http\Controllers\Site\TechnologyController;
 
 // Static lang payload for frontend
 Route::get('/lang.js', function () {
@@ -55,7 +63,7 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
     Route::post('about-blocks/{about_block}/features', [AboutBlockController::class, 'storeFeature'])->name('about-blocks.features.store');
     Route::delete('about-features/{feature}', [AboutBlockController::class, 'destroyFeature'])->name('about-features.destroy');
 
-     /*
+    /*
     |--------------------------------------------------------------------------
     | About Page CMS (Admin/About/*)
     |--------------------------------------------------------------------------
@@ -88,6 +96,30 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
         ->parameters(['sliders' => 'slider'])
         ->names('about.sliders');
 
+    /*
+    |--------------------------------------------------------------------------
+    | Technology Page CMS (Admin/Technology/*)
+    |--------------------------------------------------------------------------
+    */
+
+    // single
+    Route::get('technology/banner', [TechnologyBannerController::class, 'edit'])->name('technology.banner.edit');
+    Route::post('technology/banner', [TechnologyBannerController::class, 'update'])->name('technology.banner.update');
+
+    // resources
+    Route::resource('technology/testimonials', TechnologyTestimonialController::class)
+        ->parameters(['testimonials' => 'testimonial'])
+        ->names('technology.testimonials');
+
+    Route::resource('technology/why-choose-us', TechnologyWhyChooseUsController::class)
+        ->parameters(['why-choose-us' => 'why_choose_us'])
+        ->names('technology.why-choose-us');
+
+    Route::resource('technology/certifications', TechnologyCertificationController::class)
+        ->parameters(['certifications' => 'certification'])
+        ->names('technology.certifications');
+
+
     // Usually singleton-ish (index/edit/update only)
     Route::resource('heroes', HeroController::class)->only(['index', 'edit', 'update']);
 });
@@ -112,7 +144,7 @@ Route::group([
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-   Route::get('/about', [AboutController::class, 'index'])->name('about');
+    Route::get('/about', [AboutController::class, 'index'])->name('about');
 
     Route::get('/productDetails', fn() => view('site.productDetails'))->name('productDetails');
 
@@ -179,8 +211,8 @@ Route::group([
         ))->with(['products' => $paginator]); // keep old var name
     })->name('products');
 
-    Route::get('/technologyAndInnovation', fn() => view('site.technologyAndInnovation'))
-        ->name('technologyAndInnovation');
+    Route::get('/technology', [TechnologyController::class, 'index'])
+        ->name('technology');
 
     Route::get('/WhereToFindUs', fn() => view('site.whereToFindUs'))->name('WhereToFindUs');
     Route::get('/Markets', fn() => view('site.markets'))->name('Markets');

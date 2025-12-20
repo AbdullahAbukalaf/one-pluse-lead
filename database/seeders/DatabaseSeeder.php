@@ -20,7 +20,10 @@ use Database\Seeders\Home\AboutBlockSeeder;
 use Database\Seeders\Home\ServiceSeeder;
 use Database\Seeders\Home\WorkProcessStepSeeder;
 use Database\Seeders\Home\PurchaseBannerSeeder;
-
+use Database\Seeders\Technology\TechnologyBannerSeeder;
+use Database\Seeders\Technology\TechnologyWhyChooseUsSeeder;
+use Database\Seeders\Technology\TechnologyCertificationSeeder;
+use Database\Seeders\Technology\TechnologyTestimonialSeeder;
 class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
@@ -50,6 +53,11 @@ class DatabaseSeeder extends Seeder
             CertificationSeeder::class,
             AboutSliderSeeder::class,
             BookServiceSeeder::class,
+            // Technology Seeders
+            TechnologyBannerSeeder::class,
+            TechnologyWhyChooseUsSeeder::class,
+            TechnologyCertificationSeeder::class,
+            TechnologyTestimonialSeeder::class,
         ]);
     }
 }

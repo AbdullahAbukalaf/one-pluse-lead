@@ -32,7 +32,7 @@
                                     <a href="{{ route('products') }}">{{ __('nav.products') }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('technologyAndInnovation') }}">{{ __('nav.technology') }}</a>
+                                    <a href="{{ route('technology') }}">{{ __('nav.technology') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('WhereToFindUs') }}">{{ __('nav.where_to_find_us') }}</a>

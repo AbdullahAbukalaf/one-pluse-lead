@@ -1,15 +1,28 @@
 @extends('layouts.site.master')
 @section('title', __('technology.title'))
+@php
+    $titleField = app()->getLocale() === 'ar' ? 'heading_ar' : 'heading_en';
+    $btnField = app()->getLocale() === 'ar' ? 'button_text_ar' : 'button_text_en';
+@endphp
 @section('page-banner')
     @include('layouts.site.partials.banner', [
-        'title' => __('technology.title'),
-        'image' => asset('UI/Site/images/shapes/tyre_print.svg'),
-        'description' => __('technology.banner_description'),
+        'title' =>
+            app()->getLocale() === 'ar'
+                ? $banner->title_ar ?? __('technology.title')
+                : $banner->title_en ?? __('technology.title'),
+        'image' => $banner?->image
+            ? asset('storage/' . $banner->image)
+            : asset('UI/Site/images/shapes/tyre_print.svg'),
+        'description' =>
+            app()->getLocale() === 'ar'
+                ? $banner->description_ar ?? __('technology.banner_description')
+                : $banner->description_en ?? __('technology.banner_description'),
         'breadcrumbs' => [
             __('nav.home') => route('home'),
             __('technology.title') => null,
         ],
     ])
+
 @endsection
 @section('main-content')
     <section class="testimonial_section section_space_lg">
@@ -40,28 +53,31 @@
 
             <div class="testimonial_carousel">
                 <div class="testimonial_item_boxed carousel_3col row" data-slick='{"dots": false}'>
-                    @for ($i = 0; $i < 6; $i++)
+                    @foreach ($testimonials as $item)
                         <div class="col-md-4">
                             <div class="testimonial_item border-0">
                                 <article class="s-card">
                                     <a class="s-card_img" href="#!">
-                                        <img src="{{ asset('UI/Site/images/services/service_img_2.jpg') }}"
-                                            alt="Protect interior">
-                                        <span class="s-card_tag">{{ __('technology.card_tag') }}</span>
+                                        <img src="{{ $item->image ? asset('storage/' . $item->image) : asset('UI/Site/images/services/service_img_2.jpg') }}"
+                                            alt="{{ app()->getLocale() === 'ar' ? $item->title_ar : $item->title_en }}">
+                                        <span
+                                            class="s-card_tag">{{ app()->getLocale() === 'ar' ? $item->tag_ar : $item->tag_en }}</span>
                                     </a>
                                     <div class="s-card_body">
-                                        <h3 class="s-card_title"><a href="#!">{{ __('technology.card_title') }}</a></h3>
-                                        <p class="s-card_text">{{ __('technology.card_text') }}</p>
-                                        <a class="btn-link" href="#!">
-                                            <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                            <span class="btn_text"><small>{{ __('common.read_more') }}</small><small>{{ __('common.read_more') }}</small></span>
-                                        </a>
+                                        <h3 class="s-card_title">
+                                            <a
+                                                href="#!">{{ app()->getLocale() === 'ar' ? $item->title_ar : $item->title_en }}</a>
+                                        </h3>
+                                        <p class="s-card_text">
+                                            {{ app()->getLocale() === 'ar' ? $item->description_ar : $item->description_en }}
+                                        </p>
                                     </div>
                                 </article>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
+
             </div>
 
             <div class="btn_wrap text-center d-lg-none d-block">
@@ -92,37 +108,16 @@
 
         <div class="brand_logo_carousel brand_logo_blur_effect row align-items-center"
             data-slick='{"dots":false, "arrows": false}'>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - TOYOTA Logo">
-                </a>
-            </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - Ford Logo">
-                </a>
-            </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - DODGE Logo">
-                </a>
-            </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - JAGUAR Logo">
-                </a>
-            </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - HONDA Logo">
-                </a>
-            </div>
-            <div class="col-">
-                <a class="brand_logo_item" href="#!">
-                    <img src="{{ asset('UI/Site/images/services/service_img_1.jpg') }}" alt="ProMotors - BMW Logo">
-                </a>
-            </div>
+            @foreach ($certifications as $cert)
+                <div class="col-">
+                    <a class="brand_logo_item" href="#!">
+                        <img src="{{ $cert->image ? asset('storage/' . $cert->image) : asset('UI/Site/images/services/service_img_1.jpg') }}"
+                            alt="Certification">
+                    </a>
+                </div>
+            @endforeach
         </div>
+
     </section>
 
     <section class="section_space_md">
@@ -137,81 +132,54 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="service_item style_1">
-                        <div class="service_image">
-                            <img src="{{ Vite::asset('resources/UI/Site/images/services/service_img_1.jpg') }}"
-                                alt="{{ __('services.brake.title') }}" class="w-100">
-                        </div>
-                        <div class="service_content">
-                            <h3 class="service_title">{{ __('services.brake.title') }}</h3>
-                            <p class="mb-3">{{ __('services.brake.description') }}</p>
-                            <a class="btn-link" href="service_details.html">
-                                <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                <span class="btn_text"><small>{{ __('common.details_service') }}</small><small>{{ __('common.details_service') }}</small></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="service_item style_1">
-                        <div class="service_image">
-                            <img src="{{ Vite::asset('resources/UI/Site/images/services/service_img_2.jpg') }}"
-                                alt="{{ __('services.engine.title') }}" class="w-100">
-                        </div>
-                        <div class="service_content">
-                            <h3 class="service_title">{{ __('services.engine.title') }}</h3>
-                            <p class="mb-3">{{ __('services.engine.description') }}</p>
-                            <a class="btn-link" href="service_details.html">
-                                <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                <span class="btn_text"><small>{{ __('common.details_service') }}</small><small>{{ __('common.details_service') }}</small></span>
-                            </a>
+                @foreach ($whyChooseUs as $item)
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="service_item style_1">
+                            <div class="service_image">
+                                <img src="{{ $item->image ? asset('storage/' . $item->image) : Vite::asset('resources/UI/Site/images/services/service_img_1.jpg') }}"
+                                    alt="{{ app()->getLocale() === 'ar' ? $item->title_ar : $item->title_en }}"
+                                    class="w-100">
+                            </div>
+                            <div class="service_content">
+                                <h3 class="service_title">
+                                    {{ app()->getLocale() === 'ar' ? $item->title_ar : $item->title_en }}</h3>
+                                <p class="mb-3">
+                                    {{ app()->getLocale() === 'ar' ? $item->description_ar : $item->description_en }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="service_item style_1">
-                        <div class="service_image">
-                            <img src="{{ Vite::asset('resources/UI/Site/images/services/service_img_3.jpg') }}"
-                                alt="{{ __('services.tire.title') }}" class="w-100">
-                        </div>
-                        <div class="service_content">
-                            <h3 class="service_title">{{ __('services.tire.title') }}</h3>
-                            <p class="mb-3">{{ __('services.tire.description') }}</p>
-                            <a class="btn-link" href="service_details.html">
-                                <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                <span class="btn_text"><small>{{ __('common.details_service') }}</small><small>{{ __('common.details_service') }}</small></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
+
         </div>
     </section>
 
     <section class="purchase-banner">
-        <div class="container">
-            <div class="row">
-                <div class="my-5">
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-md-6">
-                                <div class="banner-card">
-                                    <h3 class="mb-3">{{ __('common.purchase_heading') }}</h3>
-                                    <a class="banner-btn" href="#where-to-buy">{{ __('common.where_to_buy') }}</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="banner-card">
-                                    <h3 class="mb-3">{{ __('common.more_info_heading') }}</h3>
-                                    <a class="banner-btn" href="#contact-us">{{ __('common.contact_us') }}</a>
-                                </div>
+        <div class="container my-5">
+            <div class="row g-4 align-items-center">
+
+                @forelse ($banners as $banner)
+                    @if ($banner->is_active)
+                        <div class="col-md-6">
+                            <div class="banner-card">
+                                <h3 class="mb-3">
+                                    {{ $banner->{$titleField} }}
+                                </h3>
+
+                                @if ($banner->button_url)
+                                    <a class="banner-btn" href="{{ $banner->button_url }}">
+                                        {{ $banner->{$btnField} }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
+                    @endif
+                @empty
+                    <div class="col-12 text-center">
+                        <p class="text-muted">No banners available.</p>
                     </div>
-                </div>
+                @endforelse
+
             </div>
         </div>
     </section>
