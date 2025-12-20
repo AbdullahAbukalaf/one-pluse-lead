@@ -20,6 +20,9 @@ use Database\Seeders\Home\AboutBlockSeeder;
 use Database\Seeders\Home\ServiceSeeder;
 use Database\Seeders\Home\WorkProcessStepSeeder;
 use Database\Seeders\Home\PurchaseBannerSeeder;
+use Database\Seeders\Markets\MarketBannerSeeder;
+use Database\Seeders\Markets\MarketIntroSeeder;
+use Database\Seeders\Markets\MarketServiceSeeder;
 use Database\Seeders\Technology\TechnologyBannerSeeder;
 use Database\Seeders\Technology\TechnologyWhyChooseUsSeeder;
 use Database\Seeders\Technology\TechnologyCertificationSeeder;
@@ -58,6 +61,10 @@ class DatabaseSeeder extends Seeder
             TechnologyWhyChooseUsSeeder::class,
             TechnologyCertificationSeeder::class,
             TechnologyTestimonialSeeder::class,
+            // Markets Seeders
+            MarketBannerSeeder::class,
+            MarketIntroSeeder::class,
+            MarketServiceSeeder::class,
         ]);
     }
 }

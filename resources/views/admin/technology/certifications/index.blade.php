@@ -9,9 +9,6 @@
         <a class="btn btn-primary btn-sm" href="{{ route('admin.technology.certifications.create') }}">Create</a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
     <div class="card">
         <div class="card-body table-responsive">

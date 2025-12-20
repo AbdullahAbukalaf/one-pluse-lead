@@ -30,6 +30,14 @@ use App\Http\Controllers\Admin\Technology\{
     TechnologyWhyChooseUsController,
     TechnologyCertificationController
 };
+use App\Http\Controllers\Admin\Markets\{
+    MarketBannerController,
+    MarketIntroController,
+    MarketServiceController
+};
+
+use App\Http\Controllers\Site\MarketsController;
+
 
 use App\Http\Controllers\Site\AboutController;
 use App\Http\Controllers\Site\TechnologyController;
@@ -119,6 +127,23 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
         ->parameters(['certifications' => 'certification'])
         ->names('technology.certifications');
 
+    /*
+    |--------------------------------------------------------------------------
+    | Markets Page CMS (Admin/Markets/*)
+    |--------------------------------------------------------------------------
+    */
+
+    // single
+    Route::get('markets/banner', [MarketBannerController::class, 'edit'])->name('markets.banner.edit');
+    Route::post('markets/banner', [MarketBannerController::class, 'update'])->name('markets.banner.update');
+
+    Route::get('markets/intro', [MarketIntroController::class, 'edit'])->name('markets.intro.edit');
+    Route::post('markets/intro', [MarketIntroController::class, 'update'])->name('markets.intro.update');
+
+    // resources
+    Route::resource('markets/services', MarketServiceController::class)
+        ->parameters(['services' => 'service'])
+        ->names('markets.services');
 
     // Usually singleton-ish (index/edit/update only)
     Route::resource('heroes', HeroController::class)->only(['index', 'edit', 'update']);
@@ -215,7 +240,8 @@ Route::group([
         ->name('technology');
 
     Route::get('/WhereToFindUs', fn() => view('site.whereToFindUs'))->name('WhereToFindUs');
-    Route::get('/Markets', fn() => view('site.markets'))->name('Markets');
+    Route::get('/Markets', [MarketsController::class, 'index'])->name('Markets');
+
     Route::get('/Insights', fn() => view('site.Insights'))->name('Insights');
     Route::get('/Contact', fn() => view('site.contact'))->name('Contact');
 });
