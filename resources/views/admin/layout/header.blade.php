@@ -160,6 +160,41 @@
 
                     </ul>
                 </li>
+
+                {{-- Technology Page --}}
+                <li>
+                    <a href="javascript:;" class="dropdown-toggle text-decoration-none">
+                        <span class="mtext">Technology Pages</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{ route('admin.technology.banner.edit') }}" class="text-decoration-none">
+                                Technology Banner
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.technology.testimonials.index') }}" class="text-decoration-none">
+                                Testimonials
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.technology.why-choose-us.index') }}" class="text-decoration-none">
+                                Why Choose Us
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.technology.certifications.index') }}"
+                                class="text-decoration-none">
+                                Certifications
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
 
         </div>
