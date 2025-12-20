@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\About\{
     BookServiceController,
     CertificationController
 };
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\Technology\{
     TechnologyBannerController,
     TechnologyTestimonialController,
@@ -35,12 +36,20 @@ use App\Http\Controllers\Admin\Markets\{
     MarketIntroController,
     MarketServiceController
 };
+use App\Http\Controllers\Admin\Insights\{
+    InsightHeroController,
+    InsightSectionController,
+    InsightTypeController,
+    InsightRecommendationController
+};
+use App\Http\Controllers\Site\InsightsController;
 
 use App\Http\Controllers\Site\MarketsController;
 
 
 use App\Http\Controllers\Site\AboutController;
 use App\Http\Controllers\Site\TechnologyController;
+use App\Models\Categories;
 
 // Static lang payload for frontend
 Route::get('/lang.js', function () {
@@ -145,8 +154,29 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
         ->parameters(['services' => 'service'])
         ->names('markets.services');
 
-    // Usually singleton-ish (index/edit/update only)
-    Route::resource('heroes', HeroController::class)->only(['index', 'edit', 'update']);
+
+    // ADMIN (inside dashboard group)
+    Route::get('insights/hero', [InsightHeroController::class, 'edit'])->name('insights.hero.edit');
+    Route::post('insights/hero', [InsightHeroController::class, 'update'])->name('insights.hero.update');
+
+    Route::get('insights/section', [InsightSectionController::class, 'edit'])->name('insights.section.edit');
+    Route::post('insights/section', [InsightSectionController::class, 'update'])->name('insights.section.update');
+
+    Route::resource('insights/types', InsightTypeController::class)
+        ->parameters(['types' => 'type'])
+        ->names('insights.types');
+
+    Route::resource('categories', CategoriesController::class)
+        ->parameters(['categories' => 'category'])
+        ->names('categories');
+
+    Route::resource('insights/recommendations', InsightRecommendationController::class)
+        ->only(['index', 'show', 'destroy'])
+        ->parameters(['recommendations' => 'recommendation'])
+        ->names('insights.recommendations');
+
+    // // Usually singleton-ish (index/edit/update only)
+    // Route::resource('heroes', HeroController::class)->only(['index', 'edit', 'update']);
 });
 
 // Profile (non-localized)
@@ -242,6 +272,9 @@ Route::group([
     Route::get('/WhereToFindUs', fn() => view('site.whereToFindUs'))->name('WhereToFindUs');
     Route::get('/Markets', [MarketsController::class, 'index'])->name('Markets');
 
-    Route::get('/Insights', fn() => view('site.Insights'))->name('Insights');
+
+    Route::get('/Insites', [InsightsController::class, 'index'])->name('Insites');
+    Route::post('/insights/recommendations', [InsightsController::class, 'storeRecommendation'])->name('insights.recommendations.store');
+
     Route::get('/Contact', fn() => view('site.contact'))->name('Contact');
 });

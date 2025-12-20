@@ -41,7 +41,7 @@
                                     <a href="{{ route('Markets') }}">{{ __('nav.markets') }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('Insights') }}">{{ __('nav.insights') }}</a>
+                                    <a href="{{ route('Insites') }}">{{ __('nav.insights') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('Contact') }}">{{ __('nav.contact') }}</a>

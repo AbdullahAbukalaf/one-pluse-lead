@@ -88,7 +88,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('Insights') }}">
+                                <a href="{{ route('Insites') }}">
                                     <span class="info_icon">
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
