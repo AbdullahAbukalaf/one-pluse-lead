@@ -194,6 +194,32 @@
                         </li>
                     </ul>
                 </li>
+                {{-- Markets Page --}}
+                <li>
+                    <a href="javascript:;" class="dropdown-toggle text-decoration-none">
+                        <span class="mtext">Markets Pages</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{ route('admin.markets.banner.edit') }}" class="text-decoration-none">
+                                Markets Banner
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.markets.intro.edit') }}" class="text-decoration-none">
+                                Market Intro
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.markets.services.index') }}" class="text-decoration-none">
+                                Service Section
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
             </ul>
 
