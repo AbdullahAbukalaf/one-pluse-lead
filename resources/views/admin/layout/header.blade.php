@@ -251,6 +251,44 @@
                                 href="{{ route('admin.where-to-find-us.distributors.index') }}">Distributors</a></li>
                     </ul>
                 </li>
+                {{-- Contact us page --}}
+                <li>
+                    <a href="javascript:;" class="dropdown-toggle text-decoration-none">
+                        <span class="mtext">Contact Us Pages</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{ route('admin.contact-hero.edit') }}" class="text-decoration-none">
+                                Contact Us Banner
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.contact-explore-locator.edit') }}" class="text-decoration-none">
+                                Explore Locator
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.contact-form-section.edit') }}" class="text-decoration-none">
+                                Form Section
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.contact-info.edit') }}" class="text-decoration-none">
+                                Contact Info
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.contact-video.edit') }}" class="text-decoration-none">
+                                Book service
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 {{-- Categories --}}
                 <li>
                     <a href="{{ route('admin.categories.index') }}"
