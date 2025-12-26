@@ -47,6 +47,16 @@ use App\Http\Controllers\Admin\WhereToFindUs\{
     WhereToFindUsLocationController,
     WhereToFindUsDistributorController
 };
+use App\Http\Controllers\Admin\ContactUs\{
+    ContactUsHeroController,
+    ContactUsBannerController,
+    ContactUsExploreLocatorController,
+    ContactUsFormSectionController,
+    ContactUsInfoController,
+    ContactUsVideoController,
+    ContactUsSubmissionController
+};
+use App\Http\Controllers\Site\ContactUsController;
 use App\Http\Controllers\Site\InsightsController;
 
 use App\Http\Controllers\Site\MarketsController;
@@ -196,6 +206,48 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
         ->names('where-to-find-us.distributors')
         ->parameters(['distributors' => 'distributor']);
 
+    // Contact us
+    // Single sections (edit/update only)
+    Route::get('hero', [ContactUsHeroController::class, 'edit'])->name('contact-hero.edit');
+    Route::put('hero', [ContactUsHeroController::class, 'update'])->name('contact-hero.update');
+
+    Route::get('banner', [ContactUsBannerController::class, 'edit'])->name('contact-banner.edit');
+    Route::put('banner', [ContactUsBannerController::class, 'update'])->name('contact-banner.update');
+    Route::get('explore-locator', [ContactUsExploreLocatorController::class, 'edit'])->name('contact-explore-locator.edit');
+    Route::put('explore-locator', [ContactUsExploreLocatorController::class, 'update'])->name('contact-explore-locator.update');
+
+                Route::get('form-section', [ContactUsFormSectionController::class, 'edit'])->name('contact-form-section.edit');
+    Route::put('form-section', [ContactUsFormSectionController::class, 'update'])->name('contact-form-section.update');
+
+    Route::get('info', [ContactUsInfoController::class, 'edit'])->name('contact-info.edit');
+    Route::put('info', [ContactUsInfoController::class, 'update'])->name('contact-info.update');
+    Route::get('video', [ContactUsVideoController::class, 'edit'])->name('contact-video.edit');
+    Route::put('video', [ContactUsVideoController::class, 'update'])->name('contact-video.update');
+
+    // Submissions (admin view only)
+    Route::get('submissions', [ContactUsSubmissionController::class, 'index'])->name('contact-submissions.index');
+    Route::put('submissions/{submission}/mark-read', [ContactUsSubmissionController::class, 'markRead'])->name('contact-submissions.mark-read');
+    Route::delete('submissions/{submission}', [ContactUsSubmissionController::class, 'destroy'])->name('contact-submissions.destroy');
+
+    // Contact Us - Info Section
+    Route::get('contact-us/info', [\App\Http\Controllers\Admin\ContactUs\ContactUsInfoController::class, 'edit'])
+        ->name('contact_us.info.edit');
+    Route::put('contact-us/info', [\App\Http\Controllers\Admin\ContactUs\ContactUsInfoController::class, 'update'])
+        ->name('contact_us.info.update');
+
+    // Contact Us - Info Items (CRUD)
+    Route::resource('contact-us/info-items', \App\Http\Controllers\Admin\ContactUs\ContactUsInfoItemController::class)
+        ->names([
+            'index' => 'contact_us.info_items.index',
+            'create' => 'contact_us.info_items.create',
+            'store' => 'contact_us.info_items.store',
+            'show' => 'contact_us.info_items.show',
+            'edit' => 'contact_us.info_items.edit',
+            'update' => 'contact_us.info_items.update',
+            'destroy' => 'contact_us.info_items.destroy',
+        ]);
+
+
     // // Usually singleton-ish (index/edit/update only)
     // Route::resource('heroes', HeroController::class)->only(['index', 'edit', 'update']);
 });
@@ -297,5 +349,6 @@ Route::group([
     Route::get('/Insites', [InsightsController::class, 'index'])->name('Insites');
     Route::post('/insights/recommendations', [InsightsController::class, 'storeRecommendation'])->name('insights.recommendations.store');
 
-    Route::get('/Contact', fn() => view('site.contact'))->name('Contact');
+    Route::get('/Contact', [ContactUsController::class, 'index'])->name('Contact');
+    Route::post('/Contact', [ContactUsController::class, 'submit'])->name('Contact.submit');
 });
