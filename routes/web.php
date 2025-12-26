@@ -42,9 +42,15 @@ use App\Http\Controllers\Admin\Insights\{
     InsightTypeController,
     InsightRecommendationController
 };
+use App\Http\Controllers\Admin\WhereToFindUs\{
+    WhereToFindUsHeroController,
+    WhereToFindUsLocationController,
+    WhereToFindUsDistributorController
+};
 use App\Http\Controllers\Site\InsightsController;
 
 use App\Http\Controllers\Site\MarketsController;
+use App\Http\Controllers\Site\WhereToFindUs\WhereToFindUsController;
 
 
 use App\Http\Controllers\Site\AboutController;
@@ -175,6 +181,21 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
         ->parameters(['recommendations' => 'recommendation'])
         ->names('insights.recommendations');
 
+    // Where To Find Us
+    // Where To Find Us - Hero (single)
+    Route::get('where-to-find-us/hero', [WhereToFindUsHeroController::class, 'edit'])->name('where-to-find-us.hero.edit');
+    Route::put('where-to-find-us/hero', [WhereToFindUsHeroController::class, 'update'])->name('where-to-find-us.hero.update');
+
+    // Where To Find Us - Locations (CRUD)
+    Route::resource('where-to-find-us/locations', WhereToFindUsLocationController::class)
+        ->names('where-to-find-us.locations')
+        ->parameters(['locations' => 'location']);
+
+    // Where To Find Us - Distributors (CRUD)
+    Route::resource('where-to-find-us/distributors', WhereToFindUsDistributorController::class)
+        ->names('where-to-find-us.distributors')
+        ->parameters(['distributors' => 'distributor']);
+
     // // Usually singleton-ish (index/edit/update only)
     // Route::resource('heroes', HeroController::class)->only(['index', 'edit', 'update']);
 });
@@ -269,7 +290,7 @@ Route::group([
     Route::get('/technology', [TechnologyController::class, 'index'])
         ->name('technology');
 
-    Route::get('/WhereToFindUs', fn() => view('site.whereToFindUs'))->name('WhereToFindUs');
+    Route::get('/where-to-find-us', [WhereToFindUsController::class, 'index'])->name('whereToFindUs');
     Route::get('/Markets', [MarketsController::class, 'index'])->name('Markets');
 
 

@@ -27,6 +27,9 @@ use Database\Seeders\Technology\TechnologyBannerSeeder;
 use Database\Seeders\Technology\TechnologyWhyChooseUsSeeder;
 use Database\Seeders\Technology\TechnologyCertificationSeeder;
 use Database\Seeders\Technology\TechnologyTestimonialSeeder;
+use Database\Seeders\WhereToFindUs\WhereToFindUsHeroSeeder;
+use Database\Seeders\WhereToFindUs\WhereToFindUsLocationSeeder;
+use Database\Seeders\WhereToFindUs\WhereToFindUsDistributorSeeder;
 class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
@@ -65,6 +68,10 @@ class DatabaseSeeder extends Seeder
             MarketBannerSeeder::class,
             MarketIntroSeeder::class,
             MarketServiceSeeder::class,
+            // Where To Find Us Seeders
+            WhereToFindUsHeroSeeder::class,
+            WhereToFindUsLocationSeeder::class,
+            WhereToFindUsDistributorSeeder::class,
         ]);
     }
 }

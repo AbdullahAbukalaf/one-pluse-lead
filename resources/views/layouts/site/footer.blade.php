@@ -70,7 +70,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('WhereToFindUs') }}">
+                                <a href="{{ route('whereToFindUs') }}">
                                     <span class="info_icon">
                                         <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                             alt="ProMotors - Icon Square">
@@ -159,7 +159,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('WhereToFindUs') }}">
+                                        <a href="{{ route('whereToFindUs') }}">
                                             <span class="info_icon">
                                                 <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
                                                     alt="ProMotors - Icon Square">

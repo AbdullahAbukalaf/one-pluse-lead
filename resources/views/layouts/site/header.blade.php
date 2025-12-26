@@ -35,7 +35,7 @@
                                     <a href="{{ route('technology') }}">{{ __('nav.technology') }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('WhereToFindUs') }}">{{ __('nav.where_to_find_us') }}</a>
+                                    <a href="{{ route('whereToFindUs') }}">{{ __('nav.where_to_find_us') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('Markets') }}">{{ __('nav.markets') }}</a>

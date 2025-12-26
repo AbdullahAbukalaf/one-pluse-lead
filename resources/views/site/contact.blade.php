@@ -27,7 +27,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div>
                             <p class="mb-2 fw-semibold">{{ __('common.find_agent') }}</p>
-                            <a class="btn btn-primary" href="{{ route('WhereToFindUs', ['tab' => 'agent']) }}">
+                            <a class="btn btn-primary" href="{{ route('whereToFindUs', ['tab' => 'agent']) }}">
                                 <span class="btn_text">{{ __('common.explore_agent_locator') }}</span>
                             </a>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div>
                             <p class="mb-2 fw-semibold">{{ __('common.find_distributor') }}</p>
-                            <a class="btn btn-primary" href="{{ route('WhereToFindUs', ['tab' => 'agent']) }}">
+                            <a class="btn btn-primary" href="{{ route('whereToFindUs', ['tab' => 'distributor']) }}">
                                 <span class="btn_text">{{ __('common.view_distributor_locator') }}</span>
                             </a>
                         </div>
@@ -45,7 +45,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div>
                             <p class="mb-2 fw-semibold">{{ __('common.find_retailer') }}</p>
-                            <a class="btn btn-primary" href="{{ route('WhereToFindUs', ['tab' => 'retailer']) }}">
+                            <a class="btn btn-primary" href="{{ route('whereToFindUs', ['tab' => 'retailer']) }}">
                                 <span class="btn_text">{{ __('common.explore_retailers') }}</span>
                             </a>
                         </div>
