@@ -237,9 +237,24 @@
                                 class="text-decoration-none">Recommendations</a></li>
                     </ul>
                 </li>
+                {{-- Where To Find Us --}}
+                <li class="">
+                    <a href="javascript:;" class="dropdown-toggle text-decoration-none">
+                        <span class="mtext">Where To Find Us</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class=""><a class="text-decoration-none"
+                                href="{{ route('admin.where-to-find-us.hero.edit') }}">Hero</a></li>
+                        <li class=""><a class="text-decoration-none"
+                                href="{{ route('admin.where-to-find-us.locations.index') }}">Locations</a></li>
+                        <li class=""><a class="text-decoration-none"
+                                href="{{ route('admin.where-to-find-us.distributors.index') }}">Distributors</a></li>
+                    </ul>
+                </li>
                 {{-- Categories --}}
                 <li>
-                    <a href="{{ route('admin.categories.index') }}" class="dropdown-toggle no-arrow text-decoration-none">
+                    <a href="{{ route('admin.categories.index') }}"
+                        class="dropdown-toggle no-arrow text-decoration-none">
                         <span class="mtext">Categories</span>
                     </a>
                 </li>
