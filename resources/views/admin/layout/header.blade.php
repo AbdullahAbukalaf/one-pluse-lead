@@ -53,7 +53,7 @@ $user = Auth::user();
                 </li>
 
                 <li>
-                    <a href="#" class="dropdown-toggle no-arrow text-decoration-none">
+                    <a href="{{ route('admin.users.index') }}" class="dropdown-toggle no-arrow text-decoration-none">
                         <span class="mtext">Users</span>
                     </a>
                 </li>

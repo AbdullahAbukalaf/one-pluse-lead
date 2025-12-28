@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\About\{
     BookServiceController,
     CertificationController
 };
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\Technology\{
     TechnologyBannerController,
@@ -96,6 +97,7 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
         ->name('dashboard');
 
     // CRUDs
+    Route::resource('users', UserController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('counters', HomeCounterController::class);
     Route::resource('about-blocks', AboutBlockController::class);
