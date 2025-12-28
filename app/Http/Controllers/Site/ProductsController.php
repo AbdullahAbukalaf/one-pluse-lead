@@ -13,6 +13,8 @@ use App\Models\Home\PurchaseBanner;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Vite;
+use Illuminate\Support\Str;
+
 
 class ProductsController extends Controller
 {
@@ -86,30 +88,50 @@ class ProductsController extends Controller
         }
 
         $locale = app()->getLocale();
+
         $titleColumn = $locale === 'ar' ? 'title_ar' : 'title_en';
+        $shortColumn = $locale === 'ar' ? 'short_description_ar' : 'short_description_en';
 
         $products = Product::query()
-            ->when($request->has('is_active') || Schema::hasColumn('products', 'is_active'), function ($query) {
+            ->when(Schema::hasColumn('products', 'is_active'), function ($query) {
                 $query->where('is_active', true);
             })
-            ->where($titleColumn, 'LIKE', '%' . $q . '%')
+            ->where(function ($query) use ($q, $titleColumn, $shortColumn) {
+                $query->where($titleColumn, 'LIKE', '%' . $q . '%')
+                    ->orWhere($shortColumn, 'LIKE', '%' . $q . '%');
+            })
             ->orderBy('sort_order')
-            ->limit(3)
-            ->get(['id', 'slug', 'card_image', 'title_en', 'title_ar']);
+            ->limit(5)
+            ->get(['id', 'slug', 'card_image', 'title_en', 'title_ar', 'short_description_en', 'short_description_ar']);
 
         $placeholder = Vite::asset('resources/UI/Site/images/products/product_img_1.png');
 
-        $result = $products->map(function ($product) use ($titleColumn, $placeholder) {
-            $image = $product->card_image
-                ? Storage::url($product->card_image)
-                : $placeholder;
+        $result = $products->map(function ($product) use ($titleColumn, $shortColumn, $placeholder) {
+
+            $raw = (string) ($product->card_image ?? '');
+
+            // ✅ Fix image URL for both storage paths and resources paths
+            if (!$raw) {
+                $image = $placeholder;
+            } elseif (Str::startsWith($raw, ['http://', 'https://'])) {
+                $image = $raw;
+            } elseif (Str::startsWith($raw, 'resources/')) {
+                $image = Vite::asset($raw);
+            } else {
+                // assumes it's a storage path like "products/cards/..."
+                $image = Storage::url($raw);
+            }
+
+            $short = trim(strip_tags((string) $product->{$shortColumn}));
+            if (mb_strlen($short) > 120) $short = mb_substr($short, 0, 120) . '...';
 
             return [
-                'id' => $product->id,
-                'slug' => $product->slug,
-                'title' => $product->{$titleColumn},
+                'id'        => $product->id,
+                'slug'      => $product->slug,
+                'title'     => $product->{$titleColumn},
+                'short'     => $short,
                 'image_url' => $image,
-                'url' => route('productDetails', $product->slug),
+                'url'       => route('productDetails', $product->slug),
             ];
         });
 

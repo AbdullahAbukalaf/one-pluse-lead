@@ -100,11 +100,6 @@ $user = Auth::user();
                             </a>
                         </li>
 
-                        <li>
-                            <a href="{{ route('admin.purchase-banners.index') }}" class="text-decoration-none">
-                                Purchase Banners
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
@@ -322,6 +317,13 @@ $user = Auth::user();
                             </a>
                         </li>
                     </ul>
+                </li>
+
+                {{-- Purchase Banners --}}
+                <li>
+                    <a href="{{ route('admin.purchase-banners.index') }}" class="dropdown-toggle no-arrow text-decoration-none">
+                        Purchase Banners
+                    </a>
                 </li>
 
                 {{-- Categories --}}

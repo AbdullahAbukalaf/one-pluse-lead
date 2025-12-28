@@ -17,6 +17,8 @@
 @else
     @vite(['resources/css/site.css', 'resources/js/app.js'])
 @endif
+@vite(['resources/js/site.js'])
+
 <script src="{{ route('lang.js') }}" defer></script>
 
 @yield('styles')

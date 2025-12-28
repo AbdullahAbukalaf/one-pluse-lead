@@ -36,7 +36,6 @@ class InsightsController extends Controller
             'category_id' => ['nullable','integer','exists:categories,id'],
             'recommendations' => ['nullable','string'],
         ]);
-
         $section = InsightSection::query()->where('is_active', true)->first();
 
         InsightRecommendation::query()->create([

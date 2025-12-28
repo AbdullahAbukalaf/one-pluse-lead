@@ -670,9 +670,12 @@
   // --------------------------------------------------
   (function initSearchSuggest() {
     const searchBox = document.querySelector('.search_box');
-    const input = searchBox ? searchBox.querySelector('.search_input') : null;
-    const dropdown = searchBox ? searchBox.querySelector('.search_dropdown') : null;
-    if (!searchBox || !input || !dropdown) return;
+    if (!searchBox || searchBox.dataset.searchPreferred === 'sitejs' || searchBox.dataset.searchInit === '1') {
+      return;
+    }
+    const input = searchBox.querySelector('.search_input');
+    const dropdown = searchBox.querySelector('.search_dropdown');
+    if (!input || !dropdown) return;
 
     const path = window.location.pathname || '';
     const match = path.match(/^\/(ar|en)(\/|$)/);

@@ -2,7 +2,8 @@
 <!-- Site Header - Start
       ================================================== -->
 @php
-  $logo = $settings?->header_logo_path ? asset('storage/'.$settings->header_logo_path) : Vite::asset('resources/UI/Site/images/logo.png');
+$logo = $settings?->header_logo_path ? asset('storage/'.$settings->header_logo_path) :
+Vite::asset('resources/UI/Site/images/logo.png');
 @endphp
 <header class="site_header">
     <div class="header_bottom">
@@ -11,11 +12,9 @@
                 <div class="col-lg-3 col-6 order-1 order-lg-1">
                     <div class="site_logo">
                         <a class="site_link" href="{{ route('home') }}">
-                            <img class="dark_theme_logo"
-                                src="{{ $logo }}"
+                            <img class="dark_theme_logo" src="{{ $logo }}"
                                 alt="Site Logo - ProMotors - Car Service & Detailing Template">
-                            <img class="light_theme_logo"
-                                src="{{ $logo }}"
+                            <img class="light_theme_logo" src="{{ $logo }}"
                                 alt="Site Logo - ProMotors - Car Service & Detailing Template">
                         </a>
                     </div>
@@ -71,14 +70,17 @@
                             <x-lang-switcher />
                         </li>
                         <li class="d-none d-lg-inline-flex">
-                            <div class="btn_hotline search_box">
+                            <div class="btn_hotline search_box" data-search-preferred="sitejs">
                                 <input type="text" class="search_input" placeholder="{{ __('common.search') }}..." />
                                 <button class="search_btn">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
+
+                                <!-- we will fill this -->
                                 <div class="search_dropdown" hidden></div>
                             </div>
                         </li>
+
                     </ul>
                 </div>
             </div>
