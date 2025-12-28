@@ -534,12 +534,15 @@
 
   // Details Image Carousel - Start
   // --------------------------------------------------
+  // Force LTR flow for this component even on RTL pages (container already has dir="ltr")
+  $('.details_image_carousel, .details_image_carousel_nav').attr('dir', 'ltr');
   slickInit('.details_image_carousel', {
     dots: false,
     arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    asNavFor: '.details_image_carousel_nav'
+    asNavFor: '.details_image_carousel_nav',
+    rtl: false
   });
   slickInit('.details_image_carousel_nav', {
     dots: false,
@@ -549,7 +552,8 @@
     slidesToScroll: 1,
     focusOnSelect: true,
     verticalSwiping: true,
-    asNavFor: '.details_image_carousel'
+    asNavFor: '.details_image_carousel',
+    rtl: false
   });
   // Details Image Carousel - End
   // --------------------------------------------------
@@ -660,6 +664,142 @@
   })();
   inputNumber($(".input_number"));
   // Quantity Form - end
+  // --------------------------------------------------
+
+  // Header search suggest - Start
+  // --------------------------------------------------
+  (function initSearchSuggest() {
+    const searchBox = document.querySelector('.search_box');
+    const input = searchBox ? searchBox.querySelector('.search_input') : null;
+    const dropdown = searchBox ? searchBox.querySelector('.search_dropdown') : null;
+    if (!searchBox || !input || !dropdown) return;
+
+    const path = window.location.pathname || '';
+    const match = path.match(/^\/(ar|en)(\/|$)/);
+    const base = match ? `/${match[1]}` : '';
+    const locale = match ? match[1] : (document.documentElement.lang || '');
+    const suggestUrl = `${base}/search/suggest`;
+    const noResultsText = locale === 'ar' ? 'لا توجد نتائج' : 'No results';
+
+    let activeIndex = -1;
+    let items = [];
+    let debounceTimer = null;
+
+    const closeDropdown = () => {
+      dropdown.hidden = true;
+      dropdown.innerHTML = '';
+      activeIndex = -1;
+      items = [];
+    };
+
+    const renderDropdown = (data) => {
+      dropdown.innerHTML = '';
+      if (!data.length) {
+        const empty = document.createElement('div');
+        empty.className = 'search_dropdown_empty';
+        empty.textContent = noResultsText;
+        dropdown.appendChild(empty);
+        dropdown.hidden = false;
+        return;
+      }
+
+      const list = document.createElement('ul');
+      list.className = 'search_dropdown_list';
+
+      data.forEach((item, idx) => {
+        const li = document.createElement('li');
+        li.className = 'search_dropdown_item';
+        li.setAttribute('data-url', item.url);
+        li.setAttribute('data-index', idx.toString());
+
+        const imgWrap = document.createElement('div');
+        imgWrap.className = 'search_thumb';
+        const img = document.createElement('img');
+        img.src = item.image_url;
+        img.alt = item.title;
+        imgWrap.appendChild(img);
+
+        const title = document.createElement('div');
+        title.className = 'search_title';
+        title.textContent = item.title || '';
+
+        li.appendChild(imgWrap);
+        li.appendChild(title);
+
+        li.addEventListener('mousedown', (e) => {
+          e.preventDefault();
+          window.location.href = item.url;
+        });
+
+        list.appendChild(li);
+      });
+
+      dropdown.appendChild(list);
+      dropdown.hidden = false;
+      activeIndex = -1;
+      items = data;
+    };
+
+    const setActive = (newIndex) => {
+      const listItems = dropdown.querySelectorAll('.search_dropdown_item');
+      listItems.forEach(el => el.classList.remove('active'));
+      if (newIndex >= 0 && newIndex < listItems.length) {
+        listItems[newIndex].classList.add('active');
+        activeIndex = newIndex;
+      } else {
+        activeIndex = -1;
+      }
+    };
+
+    const fetchSuggestions = (term) => {
+      fetch(`${suggestUrl}?q=${encodeURIComponent(term)}`, { headers: { 'Accept': 'application/json' } })
+        .then(res => res.ok ? res.json() : [])
+        .then(data => Array.isArray(data) ? data : [])
+        .then(renderDropdown)
+        .catch(() => closeDropdown());
+    };
+
+    input.addEventListener('input', () => {
+      const term = input.value.trim();
+      if (debounceTimer) clearTimeout(debounceTimer);
+      if (term.length < 2) {
+        closeDropdown();
+        return;
+      }
+      debounceTimer = setTimeout(() => fetchSuggestions(term), 300);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (dropdown.hidden) return;
+      const listItems = dropdown.querySelectorAll('.search_dropdown_item');
+      if (!listItems.length) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const next = activeIndex + 1 >= listItems.length ? 0 : activeIndex + 1;
+        setActive(next);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prev = activeIndex - 1 < 0 ? listItems.length - 1 : activeIndex - 1;
+        setActive(prev);
+      } else if (e.key === 'Enter') {
+        if (activeIndex >= 0 && listItems[activeIndex]) {
+          e.preventDefault();
+          const url = listItems[activeIndex].getAttribute('data-url');
+          if (url) window.location.href = url;
+        }
+      } else if (e.key === 'Escape') {
+        closeDropdown();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!searchBox.contains(e.target)) {
+        closeDropdown();
+      }
+    });
+  })();
+  // Header search suggest - End
   // --------------------------------------------------
 
 })(jQuery);

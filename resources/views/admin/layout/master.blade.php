@@ -22,7 +22,7 @@
     <!-- Header -->
     @include('admin.layout.header')
     <!--/ End Header -->
-    <div class="main-container">
+    <div class="main-container my-5 py-5" style="background-color: rgb(233, 233, 233)">
         @include('admin.layout.partials.alerts')
         @yield('content')
     </div>

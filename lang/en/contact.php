@@ -14,6 +14,7 @@ return [
         'sat_hours' => '9 am - 4 pm',
         'sun_hours' => 'Closed',
     ],
+    'subject' => 'Subject',
     'book_service_title' => 'Book your Service Today',
     'book_service_description' => 'Egestas integer eget aliquet nibh praesent tristique magna. Penatibus et magnis dis parturient montes nascetur ridiculus',
 ];

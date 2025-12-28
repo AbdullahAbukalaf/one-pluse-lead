@@ -1,5 +1,5 @@
 @php
-    $user = Auth::user();
+$user = Auth::user();
 @endphp
 <div class="header">
     <div class="header-left">
@@ -187,8 +187,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.technology.certifications.index') }}"
-                                class="text-decoration-none">
+                            <a href="{{ route('admin.technology.certifications.index') }}" class="text-decoration-none">
                                 Certifications
                             </a>
                         </li>
@@ -229,8 +228,8 @@
                     <ul class="submenu">
                         <li><a href="{{ route('admin.insights.hero.edit') }}" class="text-decoration-none">Hero
                                 Video</a></li>
-                        <li><a href="{{ route('admin.insights.section.edit') }}"
-                                class="text-decoration-none">Insights Section</a></li>
+                        <li><a href="{{ route('admin.insights.section.edit') }}" class="text-decoration-none">Insights
+                                Section</a></li>
                         <li><a href="{{ route('admin.insights.types.index') }}" class="text-decoration-none">Insight
                                 Types</a></li>
                         <li><a href="{{ route('admin.insights.recommendations.index') }}"
@@ -289,6 +288,42 @@
                         </li>
                     </ul>
                 </li>
+                {{-- Products Pages --}}
+                <li>
+                    <a href="javascript:;" class="dropdown-toggle text-decoration-none">
+                        <span class="mtext">Products Pages</span>
+                    </a>
+
+                    <ul class="submenu">
+                        {{-- Products Banner --}}
+                        <li>
+                            <a href="{{ route('admin.products.banner.edit') }}" class="text-decoration-none">
+                                Products Banner
+                            </a>
+                        </li>
+
+                        {{-- Products CRUD --}}
+                        <li>
+                            <a href="{{ route('admin.products.index') }}" class="text-decoration-none">
+                                Products
+                            </a>
+                        </li>
+
+                        {{-- Extra Sections --}}
+                        <li>
+                            <a href="{{ route('admin.products.recent_works.index') }}" class="text-decoration-none">
+                                Our Recent Works
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.products.why_choose_us.index') }}" class="text-decoration-none">
+                                Why Choose Us
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 {{-- Categories --}}
                 <li>
                     <a href="{{ route('admin.categories.index') }}"

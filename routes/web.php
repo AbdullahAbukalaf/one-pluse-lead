@@ -56,6 +56,14 @@ use App\Http\Controllers\Admin\ContactUs\{
     ContactUsVideoController,
     ContactUsSubmissionController
 };
+use App\Http\Controllers\Admin\Products\{
+    ProductController,
+    ProductAdditionalInformationController,
+    ProductsBannerController,
+    ProductsRecentWorkController,
+    ProductsWhyChooseUsController
+};
+use App\Http\Controllers\Site\ProductsController;
 use App\Http\Controllers\Site\ContactUsController;
 use App\Http\Controllers\Site\InsightsController;
 
@@ -182,10 +190,6 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
         ->parameters(['types' => 'type'])
         ->names('insights.types');
 
-    Route::resource('categories', CategoriesController::class)
-        ->parameters(['categories' => 'category'])
-        ->names('categories');
-
     Route::resource('insights/recommendations', InsightRecommendationController::class)
         ->only(['index', 'show', 'destroy'])
         ->parameters(['recommendations' => 'recommendation'])
@@ -216,7 +220,7 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
     Route::get('explore-locator', [ContactUsExploreLocatorController::class, 'edit'])->name('contact-explore-locator.edit');
     Route::put('explore-locator', [ContactUsExploreLocatorController::class, 'update'])->name('contact-explore-locator.update');
 
-                Route::get('form-section', [ContactUsFormSectionController::class, 'edit'])->name('contact-form-section.edit');
+    Route::get('form-section', [ContactUsFormSectionController::class, 'edit'])->name('contact-form-section.edit');
     Route::put('form-section', [ContactUsFormSectionController::class, 'update'])->name('contact-form-section.update');
 
     Route::get('info', [ContactUsInfoController::class, 'edit'])->name('contact-info.edit');
@@ -247,6 +251,56 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
             'destroy' => 'contact_us.info_items.destroy',
         ]);
 
+    // Products
+    // Categories (updated to include slug + banner fields)
+    Route::resource('categories', CategoriesController::class)->except(['show']);
+
+    // Products
+    Route::resource('products', ProductController::class)->except(['show']);
+
+    // Products main banner (singleton)
+    Route::get('products-banner', [ProductsBannerController::class, 'edit'])->name('products.banner.edit');
+    Route::put('products-banner', [ProductsBannerController::class, 'update'])->name('products.banner.update');
+
+    // Extra sections
+    Route::resource('products-recent-works', ProductsRecentWorkController::class)->except(['show'])
+        ->names('products.recent_works');
+    Route::resource('products-why-choose-us', ProductsWhyChooseUsController::class)->except(['show'])
+        ->names('products.why_choose_us');
+
+    Route::prefix('products/{product}/additional-information')
+        ->name('products.additional_information.')
+        ->group(function () {
+            Route::get('/', [ProductAdditionalInformationController::class, 'index'])->name('index');
+            Route::get('/create', [ProductAdditionalInformationController::class, 'create'])->name('create');
+            Route::post('/', [ProductAdditionalInformationController::class, 'store'])->name('store');
+            Route::get('/{information}/edit', [ProductAdditionalInformationController::class, 'edit'])->name('edit');
+            Route::put('/{information}', [ProductAdditionalInformationController::class, 'update'])->name('update');
+            Route::delete('/{information}', [ProductAdditionalInformationController::class, 'destroy'])->name('destroy');
+        });
+
+    Route::prefix('products/{product}/images')
+        ->name('products.images.')
+        ->group(function () {
+
+            Route::get('/', [\App\Http\Controllers\Admin\Products\ProductImagesController::class, 'index'])
+                ->name('index');
+
+            Route::get('/create', [\App\Http\Controllers\Admin\Products\ProductImagesController::class, 'create'])
+                ->name('create');
+
+            Route::post('/', [\App\Http\Controllers\Admin\Products\ProductImagesController::class, 'store'])
+                ->name('store');
+
+            Route::get('/{image}/edit', [\App\Http\Controllers\Admin\Products\ProductImagesController::class, 'edit'])
+                ->name('edit');
+
+            Route::put('/{image}', [\App\Http\Controllers\Admin\Products\ProductImagesController::class, 'update'])
+                ->name('update');
+
+            Route::delete('/{image}', [\App\Http\Controllers\Admin\Products\ProductImagesController::class, 'destroy'])
+                ->name('destroy');
+        });
 
     // // Usually singleton-ish (index/edit/update only)
     // Route::resource('heroes', HeroController::class)->only(['index', 'edit', 'update']);
@@ -274,70 +328,9 @@ Route::group([
 
     Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-    Route::get('/productDetails', fn() => view('site.productDetails'))->name('productDetails');
-
-    Route::get('/products/{category?}', function (?string $category = null) {
-        $categories = trans('products.categories');
-        $categorySlug = ($category && isset($categories[$category])) ? $category : null;
-        $categoryName = $categorySlug ? $categories[$categorySlug] : null;
-
-        $makeProduct = function ($i, $overrides = []) {
-            return array_merge([
-                'slug'    => 'product-' . $i,
-                'name'    => 'Sample Product ' . $i,
-                'brand'   => 'Brand ' . ($i % 3 + 1),
-                'price'   => rand(20, 120),
-                'image'   => Vite::asset('resources/UI/Site/images/products/product_img_5.png'),
-                'spec_1'  => 'Wattage: ' . rand(8, 50) . 'W',
-                'spec_2'  => 'Color Temp: ' . [2700, 3000, 4000, 6500][array_rand([0, 1, 2, 3])] . 'K',
-                'details' => 'Aluminum body, long-life LED driver, IP' . [20, 40, 65][array_rand([0, 1, 2])],
-            ], $overrides);
-        };
-
-        $mockByCategory = [
-            'indoor-light'  => collect(range(1, 24))->map(fn($i) => $makeProduct($i)),
-            'outdoor-light' => collect(range(1, 18))->map(fn($i) => $makeProduct($i)),
-            'garden-light'  => collect(range(1, 10))->map(fn($i) => $makeProduct($i)),
-            'solar-light'   => collect(range(1, 16))->map(fn($i) => $makeProduct($i)),
-            'strip-light'   => collect(range(1, 14))->map(fn($i) => $makeProduct($i)),
-            'bulb-light'    => collect(range(1, 20))->map(fn($i) => $makeProduct($i)),
-            'all'           => collect(range(1, 30))->map(fn($i) => $makeProduct($i)),
-        ];
-
-        /** @var \Illuminate\Support\Collection $items */
-        $items = $categorySlug ? $mockByCategory[$categorySlug] : $mockByCategory['all'];
-
-        $perPage   = 12;
-        $page      = (int) request('page', 1);
-        $pageItems = $items->forPage($page, $perPage)->values();
-        $paginator = new LengthAwarePaginator(
-            $pageItems,
-            $items->count(),
-            $perPage,
-            $page,
-            ['path' => url()->current(), 'query' => request()->query()]
-        );
-
-        $title = $categoryName ? __('products.title') . ' | ' . $categoryName : __('products.title');
-        $bannerImg = $categoryName
-            ? Vite::asset('resources/UI/Site/images/hero/products_banner.jpg')
-            : Vite::asset('resources/UI/Site/images/hero/about_banner.png');
-
-        $breadcrumbs = [
-            __('nav.home')     => route('home'),
-            __('products.title') => route('products'),
-        ];
-        if ($categoryName) $breadcrumbs[$categoryName] = null;
-
-        return view('site.products', compact(
-            'paginator',
-            'categorySlug',
-            'categoryName',
-            'title',
-            'bannerImg',
-            'breadcrumbs'
-        ))->with(['products' => $paginator]); // keep old var name
-    })->name('products');
+    Route::get('/products/{category?}', [ProductsController::class, 'index'])->name('products');
+    Route::get('/product/{slug}', [ProductsController::class, 'show'])->name('productDetails');
+    Route::get('/search/suggest', [ProductsController::class, 'suggest'])->name('products.suggest');
 
     Route::get('/technology', [TechnologyController::class, 'index'])
         ->name('technology');
