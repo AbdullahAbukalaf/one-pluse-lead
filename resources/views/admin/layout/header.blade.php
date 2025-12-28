@@ -331,6 +331,12 @@ $user = Auth::user();
                         <span class="mtext">Categories</span>
                     </a>
                 </li>
+                {{-- Site Settings --}}
+                <li>
+                    <a href="{{ route('admin.settings.edit') }}" class="dropdown-toggle no-arrow text-decoration-none">
+                        <span class="mtext">Site Settings</span>
+                    </a>
+                </li>
 
         </div>
     </div>

@@ -8,9 +8,6 @@
         <a href="{{ route('admin.where-to-find-us.locations.create') }}" class="btn btn-primary">Add Location</a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
     <div class="card">
         <div class="card-body table-responsive">

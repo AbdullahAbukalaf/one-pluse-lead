@@ -64,6 +64,7 @@ use App\Http\Controllers\Admin\Products\{
     ProductsRecentWorkController,
     ProductsWhyChooseUsController
 };
+use App\Http\Controllers\Admin\SiteSettingsController;
 use App\Http\Controllers\Site\ProductsController;
 use App\Http\Controllers\Site\ContactUsController;
 use App\Http\Controllers\Site\InsightsController;
@@ -304,6 +305,8 @@ Route::prefix('dashboard')->name('admin.')->middleware(['auth'])->group(function
                 ->name('destroy');
         });
 
+    Route::get('/admin/settings', [SiteSettingsController::class, 'edit'])->name('settings.edit');
+    Route::post('/admin/settings', [SiteSettingsController::class, 'update'])->name('settings.update');
     // // Usually singleton-ish (index/edit/update only)
     // Route::resource('heroes', HeroController::class)->only(['index', 'edit', 'update']);
 });

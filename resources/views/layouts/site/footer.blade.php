@@ -1,9 +1,18 @@
 {{-- // i18n rule: DO NOT translate class/id/data-* or any JS selector. --}}
-{{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> --}}
+{{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+</script> --}}
 
 <!-- Site Footer - Start
       ================================================== -->
+@php
+$footerLogo = $settings?->footer_logo_path ? asset('storage/'.$settings->footer_logo_path) :
+Vite::asset('resources/UI/Site/images/logo.png');
+$locale = app()->getLocale();
+@endphp
 <footer class="site_footer" id="contact-us">
     <div class="footer_content_area section_space_lg bg_gray_dark">
         <div class="container">
@@ -12,21 +21,28 @@
                     <div class="footer_about pe-lg-5">
                         <div class="site_logo">
                             <a class="site_link" href="{{ route('home') }}">
-                                <img class="dark_theme_logo"
-                                    src="{{ asset('UI/Site/images/site_logo/dark_theme_site_logo.svg') }}"
+                                <img class="dark_theme_logo" src="{{ $footerLogo }}"
                                     alt="Site Logo - ProMotors - Car Service & Detailing Template">
-                                <img class="light_theme_logo"
-                                    src="{{ asset('UI/Site/images/site_logo/light_theme_site_logo.svg') }}"
+                                <img class="light_theme_logo" src="{{ $footerLogo }}"
                                     alt="Site Logo - ProMotors - Car Service & Detailing Template">
                             </a>
                         </div>
-                        <p>{{ __('common.footer_description') }}</p>
+                        <p>{{ $locale === 'ar' ? ($settings->description_ar ?? '') : ($settings->description_en ?? '')
+                            }}</p>
+                        @if($settings?->phone)
                         <div class="footer_hotline">
                             <span>{{ __('common.support_center') }}</span>
-                            <a class="hotline_number" href="tel:+8801680636189">
-                                <bdi dir="ltr">{{ config('company.support_phone') }}</bdi>
+                            <a class="hotline_number" href="tel:{{ $settings->phone }}">
+                                <bdi dir="ltr">{{ $settings->phone }}</bdi>
                             </a>
+                            @if($settings?->email)
+                            <a class="hotline_number capitalize" href="mailto:{{ $settings->email }}">
+                                <bdi dir="ltr">{{ $settings->email }}</bdi>
+                            </a>
+                            @endif
                         </div>
+                        @endif
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -112,22 +128,21 @@
                     <div class="info_list_wrap">
                         <h3 class="list_title">{{ __('nav.products') }}</h3>
                         @php
-                            $cats = trans('products.categories');
+                        $category = $categories;
                         @endphp
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <ul class="info_list unordered_list_block text-uppercase">
 
-                                    @foreach ($cats as $slug => $label)
-                                        <li>
-                                            <a href="{{ route('products', ['category' => $slug]) }}">
-                                                <span class="info_icon">
-                                                    <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}"
-                                                        alt="">
-                                                </span>
-                                                <span class="info_text">{{ $label }}</span>
-                                            </a>
-                                        </li>
+                                    @foreach ($category as $cat)
+                                    <li>
+                                        <a href="{{ route('products', ['category' => $cat->slug]) }}">
+                                            <span class="info_icon">
+                                                <img src="{{ asset('UI/Site/images/icons/icon_square.svg') }}" alt="">
+                                            </span>
+                                            <span class="info_text">{{ app()->getLocale() === 'ar' ? $cat->title_ar : $cat->title_en }}</span>
+                                        </a>
+                                    </li>
                                     @endforeach
                                 </ul>
                             </div>

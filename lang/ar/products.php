@@ -24,4 +24,8 @@ return [
         'strip-light' => 'شرائط إضاءة',
         'bulb-light' => 'مصابيح',
     ],
+    'spesifications 1' => 'المواصفات 1',
+    'spesifications 2' => 'المواصفات 2',
+    'spesifications 3' => 'المواصفات 3',
+    'details' => 'تفاصيل',
 ];
