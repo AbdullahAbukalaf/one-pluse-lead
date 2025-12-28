@@ -73,6 +73,7 @@
                                 <button class="search_btn">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
+                                <div class="search_dropdown" hidden></div>
                             </div>
                         </li>
                     </ul>
