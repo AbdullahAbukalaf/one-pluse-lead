@@ -81,9 +81,9 @@
 
 /* Responsive touch-ups */
 @media (max-width: 991.98px) {
-    .header_btns_group {
+    /* .header_btns_group {
         gap: 10px;
-    }
+    } */
 
     .main_menu_list > li:not(:last-child) {
         margin: 0 0 10px 0 !important;
@@ -167,4 +167,196 @@
 
 .btn_hotline .search_btn:hover {
     color: #ffffff;
+}
+
+/* Header search dropdown overrides */
+.btn_hotline.search_box {
+    position: relative;
+    overflow: visible;
+    gap: 10px;
+}
+
+.search_box .search_input {
+    flex: 1 1 140px;
+    min-width: 140px;
+}
+
+.search_dropdown {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-inline-start: auto;
+    top: calc(100% + 10px);
+    width: clamp(420px, 38vw, 720px);
+    max-inline-size: 92vw;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(18, 18, 18, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 420px;
+    overflow: auto;
+    z-index: 1300;
+    backdrop-filter: blur(6px);
+}
+
+.search_dropdown[hidden] {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .search_dropdown {
+        width: min(92vw, 520px);
+        max-inline-size: 92vw;
+        inset-inline-start: auto;
+        inset-inline-end: 0;
+    }
+}
+
+.search_list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.search_item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--bs-body-color, #f2f2f2);
+    background: transparent;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.search_item:hover,
+.search_item.is-active {
+    background-color: rgba(221, 106, 35, 0.12);
+    border-color: rgba(221, 106, 35, 0.55);
+    transform: translateY(-1px);
+}
+
+.search_thumb {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.search_item_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.search_item_body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.search_item_title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.35;
+    color: #fff;
+}
+
+.search_item_desc {
+    margin: 0;
+    color: #b9b9b9;
+    font-size: 13px;
+    line-height: 1.45;
+    display: -webkit-box;
+    /* -webkit-line-clamp: 2; */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.search_state {
+    padding: 12px;
+    color: #bdbdbd;
+    font-size: 14px;
+}
+
+[dir="rtl"] .search_dropdown {
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+    text-align: right;
+}
+
+[dir="rtl"] .search_item {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .search_item_body {
+    text-align: right;
+}
+
+/* Header layout fixes (keep nav clickable and mobile menu usable) */
+.site_header {
+    z-index: 150;
+}
+
+@media (max-width: 991.98px) {
+    .site_header {
+        position: relative;
+    }
+
+    .site_header .header_bottom {
+        padding: 16px 0;
+        background-color: rgba(18, 18, 18, 0.96);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        box-shadow: none;
+    }
+
+    .site_header .main_menu {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        z-index: auto;
+        width: 100%;
+    }
+
+    .site_header .main_menu_inner {
+        width: 100%;
+        background-color: var(--bs-gray-dark);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+    }
+
+    .site_header .main_menu_inner.collapse:not(.show) {
+        display: none;
+    }
+
+    .site_header .main_menu_list {
+        width: 100%;
+        max-width: none;
+        padding: 12px 18px;
+        margin: 0;
+    }
+
+    .site_header .main_menu_list>li {
+        width: 100%;
+    }
+
+    .site_header .main_menu_list>li>a {
+        width: 100%;
+        padding: 12px 0;
+    }
 }

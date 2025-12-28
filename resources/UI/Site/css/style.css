@@ -814,7 +814,7 @@ mark {
 .unordered_list>li,
 .unordered_list_end>li,
 .unordered_list_center>li {
-    float: left;
+    /* float: left; */
     list-style: none;
     display: inline-block;
 }

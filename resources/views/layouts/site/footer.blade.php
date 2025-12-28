@@ -210,9 +210,6 @@ $locale = app()->getLocale();
 <!-- Site Footer - End
       ================================================== -->
 
-<!-- Fraimwork - Jquery Include -->
-@vite(['resources/js/site.js'])
-
 <!-- ===== Legacy / Vendor JS (must be global, NOT imported) ===== -->
 <script defer src="{{ Vite::asset('resources/UI/Site/js/jquery.min.js') }}"></script>
 <script defer src="{{ Vite::asset('resources/UI/Site/js/popper.min.js') }}"></script>
