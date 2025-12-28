@@ -72,6 +72,8 @@ class DatabaseSeeder extends Seeder
             WhereToFindUsHeroSeeder::class,
             WhereToFindUsLocationSeeder::class,
             WhereToFindUsDistributorSeeder::class,
+            // Site Settings Seeder
+            SiteSettingsSeeder::class,
         ]);
     }
 }

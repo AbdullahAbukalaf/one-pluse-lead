@@ -5,9 +5,6 @@
 <div class="container-fluid">
     <h4 class="mb-3">Contact Info Section</h4>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
     <div class="card">
         <div class="card-body">

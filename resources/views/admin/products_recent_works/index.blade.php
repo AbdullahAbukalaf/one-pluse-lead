@@ -8,9 +8,6 @@
         <a href="{{ route('admin.products.recent_works.create') }}" class="btn btn-primary">Create</a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
     <div class="card">
         <div class="card-body table-responsive">

@@ -1,6 +1,9 @@
 {{-- // i18n rule: DO NOT translate class/id/data-* or any JS selector. --}}
 <!-- Site Header - Start
       ================================================== -->
+@php
+  $logo = $settings?->header_logo_path ? asset('storage/'.$settings->header_logo_path) : Vite::asset('resources/UI/Site/images/logo.png');
+@endphp
 <header class="site_header">
     <div class="header_bottom">
         <div class="container-fluid">
@@ -9,10 +12,10 @@
                     <div class="site_logo">
                         <a class="site_link" href="{{ route('home') }}">
                             <img class="dark_theme_logo"
-                                src="{{ Vite::asset('resources/UI/Site/images/site_logo/dark_theme_site_logo.svg') }}"
+                                src="{{ $logo }}"
                                 alt="Site Logo - ProMotors - Car Service & Detailing Template">
                             <img class="light_theme_logo"
-                                src="{{ Vite::asset('resources/UI/Site/images/site_logo/light_theme_site_logo.svg') }}"
+                                src="{{ $logo }}"
                                 alt="Site Logo - ProMotors - Car Service & Detailing Template">
                         </a>
                     </div>

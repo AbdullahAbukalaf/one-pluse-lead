@@ -8,9 +8,6 @@
         <a href="{{ route('admin.where-to-find-us.distributors.create') }}" class="btn btn-primary">Add Distributor</a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
     <div class="card">
         <div class="card-body table-responsive">

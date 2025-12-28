@@ -72,15 +72,15 @@ if ($categoryName) $breadcrumbs[$categoryName] = null;
                                 @else
                                 <div class="small text-white-50">
                                     @if($p->spec_1_en || $p->spec_1_ar)
-                                    <div><strong>Specification 1:</strong> {{ $locale === 'ar' ? $p->spec_1_ar :
+                                    <div><strong>{{ __('products.spesifications 1') }}:</strong> {{ $locale === 'ar' ? $p->spec_1_ar :
                                         $p->spec_1_en }}</div>
                                     @endif
                                     @if($p->spec_2_en || $p->spec_2_ar)
-                                    <div><strong>Specification 2:</strong> {{ $locale === 'ar' ? $p->spec_2_ar :
+                                    <div><strong>{{ __('products.spesifications 2') }}:</strong> {{ $locale === 'ar' ? $p->spec_2_ar :
                                         $p->spec_2_en }}</div>
                                     @endif
                                     @if($p->details_snippet_en || $p->details_snippet_ar)
-                                    <div><strong>Details:</strong> {{ $locale === 'ar' ? $p->details_snippet_ar :
+                                    <div><strong>{{ __('products.details') }}:</strong> {{ $locale === 'ar' ? $p->details_snippet_ar :
                                         $p->details_snippet_en }}</div>
                                     @endif
                                 </div>
@@ -89,7 +89,7 @@ if ($categoryName) $breadcrumbs[$categoryName] = null;
                                 <div class="item_footer mt-3">
                                     <a class="btn-link" href="{{ route('productDetails', $p->slug) }}">
                                         <span class="btn_icon"><i class="fa-regular fa-angle-right"></i></span>
-                                        <span class="btn_text"><small>SEE MORE</small><small>SEE MORE</small></span>
+                                        <span class="btn_text"><small>{{ __('products.see_more') }}</small><small>{{ __('products.see_more') }}</small></span>
                                     </a>
                                 </div>
 

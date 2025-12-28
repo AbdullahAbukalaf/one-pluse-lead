@@ -24,4 +24,8 @@ return [
         'strip-light' => 'Strip Light',
         'bulb-light' => 'Bulb Light',
     ],
+    'spesifications 1' => 'Specifications 1',
+    'spesifications 2' => 'Specifications 2',
+    'spesifications 3' => 'Specifications 3',
+    'details' => 'Details',
 ];
